@@ -7,9 +7,7 @@
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
-      <FORM 
-        action="../"
-        method="post">
+      <form id='fquestion' name='fquestion' action=’AddQuestion.php’>
         Email:
         <input type="text" name="email" value=""/>
         <br />
@@ -34,13 +32,16 @@
           <option value="2">Media</option>
           <option value="3">Alta</option>
         </select>
+        <br />
         Tema (subject):
         <input type="text" name="subject" value=""/>
         <br />
-      </FORM>
+        <input type="submit" value="Enviar" onclick="verificar_email(email)">
+      </form>
 
     </div>
   </section>
   <?php include '../html/Footer.html' ?>
+  <script src="ValidateFieldsQuestionsJS.js"></script>
 </body>
 </html>

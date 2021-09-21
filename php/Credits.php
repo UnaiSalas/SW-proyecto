@@ -8,9 +8,11 @@
   <section class="main" id="s1">
     <div>
 
-      <h2>Nombre y Apellidos: Unai Salas
-          Especialidad cursada en del grado: Computacion
-          Foto o Avatar</h2>
+      <h2>Nombre y Apellidos: Unai Salas</h2>
+      <br />
+      <h2>Especialidad cursada en del grado: Computacion</h2>
+      <br />
+      <h2>Foto o Avatar</h2>
 
     </div>
   </section>
