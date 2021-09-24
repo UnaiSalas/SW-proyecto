@@ -1,6 +1,5 @@
 
 function validarform() {
-  alert("Entro");
   return validar_vacios() && validar_email() && validar_long() && validar_dificultad();
 }
 
@@ -14,13 +13,13 @@ function validar_vacios() {
     var wrong_answ_3 = document.getElementById("wrong_answ_3").value;
     var subject = document.getElementById("subject").value;
 
-    return !((email == "") || (pregunta == "") || (right_answ == "") || (wrong_answ_1 == "") || (wrong_answ_2 == "") || (wrong_answ_3 == "") || (subject == ""));
+    return !(email == "" && pregunta == "" && right_answ == "" && wrong_answ_1 == "" && wrong_answ_2 == "" && wrong_answ_3 == "" && subject == "");
     
   }
 
 function validar_email() {
   var email = document.getElementById("email").value;
-  var expresion_email_alumno = /^[a-z]+\\d{3}@ikasle\.ehu\.(eus|es)$/;
+  var expresion_email_alumno = /^[a-z]+[0-9][0-9][0-9]@ikasle\.ehu\.(eus|es)$/;
   var expresion_email_profe = /^([a-z]+\.)?[a-z]+@ehu\.(eus|es)$/;
 
   return (expresion_email_profe.test(email) || expresion_email_alumno.test(email));
