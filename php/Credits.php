@@ -13,6 +13,9 @@
       <h2>Especialidad cursada en del grado: Computacion e Ingeniería de Computadores</h2>
       <br />
       <h2>Foto o Avatar</h2>
+      <br>
+      <img src="../images/MikelMorillo.jpg" width="10%" height="10%"/>
+      <img src="../images/UnaiSalas.jpg" width="10%" height="10%"/>
 
     </div>
   </section>
