@@ -1,6 +1,6 @@
 
-function validar_form() {
-  
+function validarform() {
+  alert("Entro");
   return validar_vacios() && validar_email() && validar_long() && validar_dificultad();
 }
 
