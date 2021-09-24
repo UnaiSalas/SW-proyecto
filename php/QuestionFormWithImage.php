@@ -5,7 +5,7 @@
 </head>
 <body>
 <script src="../js/jquery-3.4.1.min.js" type="text/javascript"></script>
-  <script src="../js/ValidateFieldsQuestionJS.js"></script>
+  <script src="../js/ValidateFieldsQuestionJQ.js"></script>
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
