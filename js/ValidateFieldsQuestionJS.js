@@ -13,8 +13,12 @@ function validar_vacios() {
     var wrong_answ_3 = document.getElementById("wrong_answ_3").value;
     var subject = document.getElementById("subject").value;
 
-    return !(email == "" && pregunta == "" && right_answ == "" && wrong_answ_1 == "" && wrong_answ_2 == "" && wrong_answ_3 == "" && subject == "");
-    
+    if ((email == "") || (pregunta == "") || (right_answ == "") || (wrong_answ_1 == "") || (wrong_answ_2 == "") || (wrong_answ_3 == "") || (subject == "")){
+      alert("Los campos obligatorios deben estar completos");
+      return false;
+    }else{
+      return true;
+    }
   }
 
 function validar_email() {
@@ -35,5 +39,10 @@ function validar_dificultad() {
 
 function validar_long() {
   var pregunta = document.getElementById("pregunta").value;
-  return pregunta.length >= 10;
+  if(pregunta.length >= 10){
+    return true;
+  }else{
+    alert("La pregunta debe tener como mínimo 10 caracteres");
+    return false;
+  }
 }
