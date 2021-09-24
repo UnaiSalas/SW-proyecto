@@ -2,13 +2,14 @@
 <html>
 <head>
   <?php include '../html/Head.html'?>
-  <script src="../js/ValidateFieldsQuestionsJS.js"></script>
+  <script type="text/javascript" src="../js/ValidateFieldsQuestionsJS.js"></script>
+  <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
 </head>
 <body>
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
-      <form id='fquestion' name='fquestion' action=’AddQuestion.php’>
+      <form id='fquestion' name='fquestion' action=’AddQuestion.php’ method="GET">
         Email:
         <input type="text" id="email" name="email" value=""/>
         <br />
@@ -37,12 +38,11 @@
         Tema (subject):
         <input type="text" id="subject" name="subject" value=""/>
         <br />
-        <input type="submit" value="Enviar" onclick="validar_form()">
+        <input type="submit" value="Enviar" onClick="return validar_form();">
       </form>
 
     </div>
   </section>
   <?php include '../html/Footer.html' ?>
-  <script src="ValidateFieldsQuestionsJS.js"></script>
 </body>
 </html>
