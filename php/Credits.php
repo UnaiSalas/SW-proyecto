@@ -19,6 +19,8 @@
       <h2>Especialidad cursada en del grado: Ingeniería de computadores</h2>
       <br />
       <h2>Foto o Avatar</h2>
+      <br>
+      <img src="../images/MikelMorillo.jpg" width="10%" height="10%"/>
 
     </div>
   </section>
