@@ -58,13 +58,13 @@ $(document).ready(function(){
         $('#wrong_answ_3').next("p").remove();
     });
 
-    $('#subject').blur(function(){
-        if( $('#subject').val() == ""){
-            $('#subject').after('<p class="ErrorMsgs"> Este campo no puede estar vacío </p>');
+    $('#tema').blur(function(){
+        if( $('#tema').val() == ""){
+            $('#tema').after('<p class="ErrorMsgs"> Este campo no puede estar vacío </p>');
         }
     });
-    $('#subject').focus(function(){
-        $('#subject').next("p").remove();
+    $('#tema').focus(function(){
+        $('#tema').next("p").remove();
     });
 
 })

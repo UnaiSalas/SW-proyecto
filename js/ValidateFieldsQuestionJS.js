@@ -11,9 +11,9 @@ function validar_vacios() {
     var wrong_answ_1 = document.getElementById("wrong_answ_1").value;
     var wrong_answ_2 = document.getElementById("wrong_answ_2").value;
     var wrong_answ_3 = document.getElementById("wrong_answ_3").value;
-    var subject = document.getElementById("subject").value;
+    var tema = document.getElementById("tema").value;
 
-    if ((email == "") || (pregunta == "") || (right_answ == "") || (wrong_answ_1 == "") || (wrong_answ_2 == "") || (wrong_answ_3 == "") || (subject == "")){
+    if ((email == "") || (pregunta == "") || (right_answ == "") || (wrong_answ_1 == "") || (wrong_answ_2 == "") || (wrong_answ_3 == "") || (tema == "")){
       alert("Los campos obligatorios deben estar completos");
       return false;
     }else{

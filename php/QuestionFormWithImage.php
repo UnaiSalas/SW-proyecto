@@ -11,7 +11,7 @@
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
-      <form id='fquestion' name='fquestion' action='AddQuestion.php' method="GET" onsubmit="return validarform();">
+      <form id='fquestion' name='fquestion' action='AddQuestion.php' method="POST" onsubmit="return validarform();">
         <label for="email"> Email*: </label>
         <input type="text" id="email" name="email" value=""/>
         <br />
@@ -37,10 +37,10 @@
           <option value="3">Alta</option>
         </select>
         <br />
-        <label for="subject"> Tema*: </label>
-        <input type="text" id="subject" name="subject" value=""/>
+        <label for="tema"> Tema*: </label>
+        <input type="text" id="tema" name="tema" value=""/>
         <br />
-        <input type="submit" value="Enviar" id="Enviar">
+        <input type="submit" value="Enviar" id="Enviar" name="Enviar">
       </form>
 
     </div>
