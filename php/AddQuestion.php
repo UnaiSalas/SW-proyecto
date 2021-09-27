@@ -16,7 +16,6 @@
 
         // Create connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);
-        echo "Conectado";
         // Check connection
         if (!$conn){
           die("Connection failed: " . mysqli_connect_error());
@@ -27,9 +26,17 @@
 
         $stmt = $conn->prepare($sql);
 
-        $stmt->bind_param("ssssssis", $_POST['email'], $_POST['pregunta'], $_POST['right_answ'], $_POST['wrong_answ_1'], $_POST['wrong_answ_2'], $_POST['wrong_answ_3'], $_POST['dificultad'], $_POST['tema']);
+        $stmt->bind_param('ssssssis', $_POST['email'], $_POST['pregunta'], $_POST['right_answ'], $_POST['wrong_answ_1'], $_POST['wrong_answ_2'], $_POST['wrong_answ_3'], $_POST['dificultad'], $_POST['tema']);
         
-        $stmt->execute();
+        if($stmt->execute()){
+          echo "<h2>Ir a insertar pregunta</h2>";
+          echo "</br>";
+          echo "<span><a href='ShowQuestions.php'> Mostrar preguntas almacenadas</span>";
+        }else{
+          echo "<h2>Se ha producido un error. Intentelo de nuevo.</h2>";
+          echo "</br>";
+          echo "<span><a href='QuestionFormWithImage.php'> <h2>Ir a insertar pregunta</h2></a></span>";
+        }
         /*
         if(isset($_POST['Enviar'])){	
           echo "Conectado"; 
@@ -50,7 +57,6 @@
           " . mysqli_error($conn);
           }
         }*/
-        echo("Realizado");
         mysqli_close($conn);
       ?>
 

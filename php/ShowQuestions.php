@@ -7,6 +7,15 @@
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
+    <style>
+      table
+        {
+          border-style:solid;
+          border-width:2px;
+          border-color:pink;
+        }
+
+</style>
       <?php
         $servername = "127.0.0.1"; 
         $username = "root";  // en entorno de desarrollo OK, pero en producción usaremos otro usuario
@@ -21,35 +30,27 @@
           die("Connection failed: " . mysqli_connect_error());
         }
 
-        $sql = "SELECT email, pregunta, right_answ, wrong_answ_1, wrong_answ_2, wrong_answ_3, dificultad, tema FROM Preguntas";
+        $sql = "SELECT email, Pregunta, Right_Answer, Wrong_Answer1, Wrong_Answer2, Wrong_Answer3, Complejidad, Tema FROM Preguntas";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0){
           // output data of each row
-          while ($row = mysqli_fetch_assoc($result)){
-            echo "email: " . $row["email"] . " - pregunta: " . $row["pregunta"] . " - right_answ: " . $row["right_answ"] . " - wrong_answ_1: " . $row["wrong_answ_1"] . " - wrong_answ_2: " . $row["wrong_answ_2"] . " - wrong_answ_3: " . $row["wrong_answ_3"] . " - dificultad: " . $row["dificultad"] . " - tema: " . $row["tema"] . "\n<br><br><br>";
-          }
+          //while ($row = mysqli_fetch_assoc($result)){
+            //echo "email: " . $row["email"] . " - pregunta: " . $row["Pregunta"] . " - right_answ: " . $row["Right_Answer"] . " - wrong_answ_1: " . $row["Wrong_Answer1"] . " - wrong_answ_2: " . $row["Wrong_Answer2"] . " - wrong_answ_3: " . $row["Wrong_Answer3"] . " - dificultad: " . $row["Complejidad"] . " - tema: " . $row["Tema"] . "\n<br><br><br>";
+          //}
 
           // esto es para ponerlo más bonito (falta por hacer ya que lo hace mal)
           // probar lo que pone en este enlace: https://es.stackoverflow.com/questions/78414/como-mostrar-los-datos-de-una-base-de-datos-en-una-tabla-en-html-y-php
-          ?>
-          <table class="default">
-            <thead>
-            <tr>
-              <th>email</th>
-              <th>pregunta</th>
-              <th>right_answ</th>
-              <th>wrong_answ_1</th>
-              <th>wrong_answ_2</th>
-              <th>wrong_answ_3</th>
-              <th>dificultad</th>
-              <th>tema</th>
-            </tr>
-        </thead>
-              <?while ($row = mysqli_fetch_assoc($result)){?>
-                <td><?php $row['email'] ?></td>
-          </table>
-          <?php
+          
+          echo "<table border='1'>"; // start a table tag in the HTML
+          echo "<tr><th>Email</th><th>Pregunta</th><th>Respuesta Correcta</th><th>Respuesta Incorrecta</th><th>Respuesta Incorrecta</th><th>Respuesta Incorrecta</th><th>Complejidad</th><th>Tema</th></tr>";
+
+          while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
+            echo "<tr><td>" . $row['email'] . "</td><td>" . $row['Pregunta'] . "</td><td>" . $row['Right_Answer'] . "</td><td>" . $row['Wrong_Answer1'] . "</td><td>" . $row['Wrong_Answer2'] . "</td><td>" . $row['Wrong_Answer3'] . "</td><td>" . $row['Complejidad'] . "</td><td>" . $row['Tema'] . "</td></tr>";  //$row['index'] the index here is a field name
+          }
+
+          echo "</table>";
+          
         }else{
           echo "0 results";
         }
