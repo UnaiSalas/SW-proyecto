@@ -40,7 +40,7 @@
         <label for="subject"> Tema*: </label>
         <input type="text" id="subject" name="subject" value=""/>
         <br />
-        <input type="submit" value="Enviar" id="bEnviar">
+        <input type="submit" value="Enviar" id="Enviar">
       </form>
 
     </div>
