@@ -17,10 +17,10 @@
 
 </style>
       <?php
-        $server="localhost";
-        $user="G24";
-        $pass="oqpjFF3vQ7Gbp";
-        $basededatos="db_G24";
+        $servername = "localhost"; 
+        $username = "G24";  // en entorno de desarrollo OK, pero en producción usaremos otro usuario
+        $password = "oqpjFF3vQ7Gbp"; // en entorno de desarrollo OK, pero en producción definiremos password
+        $dbname = "db_G24";
 
         // Create connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);
