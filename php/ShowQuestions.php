@@ -46,7 +46,16 @@
           echo "<tr><th>Email</th><th>Pregunta</th><th>Respuesta Correcta</th><th>Respuesta Incorrecta</th><th>Respuesta Incorrecta</th><th>Respuesta Incorrecta</th><th>Complejidad</th><th>Tema</th></tr>";
 
           while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
-            echo "<tr><td>" . $row['email'] . "</td><td>" . $row['Pregunta'] . "</td><td>" . $row['Right_Answer'] . "</td><td>" . $row['Wrong_Answer1'] . "</td><td>" . $row['Wrong_Answer2'] . "</td><td>" . $row['Wrong_Answer3'] . "</td><td>" . $row['Complejidad'] . "</td><td>" . $row['Tema'] . "</td></tr>";  //$row['index'] the index here is a field name
+            if ($row['Complejidad']==1){
+              $comp = "Baja";
+            }
+            if ($row['Complejidad']==2){
+              $comp = "Media";
+            }
+            if ($row['Complejidad']==3){
+              $comp = "Alta";
+            }
+            echo "<tr><td>" . $row['email'] . "</td><td>" . $row['Pregunta'] . "</td><td>" . $row['Right_Answer'] . "</td><td>" . $row['Wrong_Answer1'] . "</td><td>" . $row['Wrong_Answer2'] . "</td><td>" . $row['Wrong_Answer3'] . "</td><td>" . $row['Complejidad'] . "</td><td>" . $comp . "</td></tr>";  //$row['index'] the index here is a field name
           }
 
           echo "</table>";
