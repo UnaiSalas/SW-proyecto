@@ -48,7 +48,7 @@
           $wrong_answer3 = $_POST['wrong_answ_3'];
           $dificultad = $_POST['dificultad'];
           $tema = $_POST['tema'];
-          $sql = "INSERT INTO Preguntas (Email,Pregunta,Right_Answer,Wrong_Answer1,Wrong_Answer2,Wrong_Answer3,Complejidad,Tema,Imagen)
+          $sql = "INSERT INTO Preguntas (Email,Pregunta,Right_Answer,Wrong_Answer1,Wrong_Answer2,Wrong_Answer3,Complejidad,Tema)
           VALUES ('$email','$pregunta','$right_answer','$wrong_answer1','$wrong_answer2','$wrong_answer3','$dificultad','$tema')";
           if (mysqli_query($conn, $sql)) {
           echo "New record created successfully !";
