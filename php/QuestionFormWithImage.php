@@ -7,6 +7,7 @@
 
   <script src="../js/jquery-3.4.1.min.js" type="text/javascript"></script>
   <script src="../js/ValidateFieldsQuestionJQ.js"></script>
+  <script type="text/javascript" src="../js/ShowImageInForm.js"></script>
 
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
@@ -40,6 +41,8 @@
         <label for="tema"> Tema*: </label>
         <input type="text" id="tema" name="tema" value=""/>
         <br />
+        <input type='file' onchange="readURL(this);" /><br />
+        <img id="blah" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb1vm2W-b2WQOKVn-OHECsVw0jGt9zY1SLeg&usqp=CAU" alt="your image" width='180' height='180' /><br />
         <input type="submit" value="Enviar" id="Enviar" name="Enviar">
       </form>
 
