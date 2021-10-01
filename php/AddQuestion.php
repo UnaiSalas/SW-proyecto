@@ -51,10 +51,13 @@
           $sql = "INSERT INTO Preguntas (Email,Pregunta,Right_Answer,Wrong_Answer1,Wrong_Answer2,Wrong_Answer3,Complejidad,Tema)
           VALUES ('$email','$pregunta','$right_answer','$wrong_answer1','$wrong_answer2','$wrong_answer3','$dificultad','$tema')";
           if (mysqli_query($conn, $sql)) {
-          echo "New record created successfully !";
+            echo "<h2>Ir a insertar pregunta</h2>";
+            echo "</br>";
+            echo "<span><a href='ShowQuestions.php'> Mostrar preguntas almacenadas</span>";
           } else {
-          echo "Error: " . $sql . "
-          " . mysqli_error($conn);
+            echo "<h2>Se ha producido un error. Intentelo de nuevo.</h2>";
+            echo "</br>";
+            echo "<span><a href='QuestionFormWithImage.php'> <h2>Ir a insertar pregunta</h2></a></span>";
           }
         }
         mysqli_close($conn);
