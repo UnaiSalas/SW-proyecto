@@ -70,7 +70,7 @@ $(document).ready(function(){
 })
 
 function validarform() {
-    if($('.ErrorMsgs').length == 0){
+    if(($('.ErrorMsgs').length == 0) && validar_vacios()){
         return true;
     }else{
         return false;
@@ -97,4 +97,22 @@ function validarform() {
   function validar_long() {
     var pregunta = document.getElementById("pregunta").value;
     return pregunta.length >= 10;
+  }
+
+  function validar_vacios() {
+
+    var email = document.getElementById("email").value;
+    var pregunta = document.getElementById("pregunta").value;
+    var right_answ = document.getElementById("right_answ").value;
+    var wrong_answ_1 = document.getElementById("wrong_answ_1").value;
+    var wrong_answ_2 = document.getElementById("wrong_answ_2").value;
+    var wrong_answ_3 = document.getElementById("wrong_answ_3").value;
+    var tema = document.getElementById("tema").value;
+
+    if ((email == "") || (pregunta == "") || (right_answ == "") || (wrong_answ_1 == "") || (wrong_answ_2 == "") || (wrong_answ_3 == "") || (tema == "")){
+      alert("Los campos obligatorios deben estar completos");
+      return false;
+    }else{
+      return true;
+    }
   }
