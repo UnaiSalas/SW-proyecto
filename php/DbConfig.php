@@ -10,6 +10,6 @@ else{
     $server="localhost";
     $user="G24";
     $pass="oqpjFF3vQ7Gbp";
-    $basededatos="Quiz";
+    $basededatos="db_G24";
 }
 ?>
