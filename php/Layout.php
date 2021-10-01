@@ -9,7 +9,6 @@
     <div>
 
       <h2>Quiz: el juego de las preguntas</h2>
-      <span><a href='QuestionFormWithImage.php'> Insertar Pregunta</a></span>
     </div>
   </section>
   <?php include '../html/Footer.html' ?>

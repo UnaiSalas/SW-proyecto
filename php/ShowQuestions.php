@@ -30,7 +30,7 @@
           die("Connection failed: " . mysqli_connect_error());
         }
 
-        $sql = "SELECT email, Pregunta, Right_Answer, Wrong_Answer1, Wrong_Answer2, Wrong_Answer3, Complejidad, Tema FROM Preguntas";
+        $sql = "SELECT email, Pregunta, Right_Answer, Wrong_Answer1, Wrong_Answer2, Wrong_Answer3, Complejidad, Tema, Imagen FROM Preguntas";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0){
