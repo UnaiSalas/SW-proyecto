@@ -8,7 +8,7 @@ if ($local==1){
 }
 else{
     $server="localhost";
-    $user="G24@localhost";
+    $user="G24";
     $pass="oqpjFF3vQ7Gbp";
     $basededatos="db_G24";
 }
