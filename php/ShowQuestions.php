@@ -17,7 +17,7 @@
 
 </style>
       <?php
-        $servername = "127.0.0.1"; 
+        $servername = "localhost"; 
         $username = "G24";  // en entorno de desarrollo OK, pero en producción usaremos otro usuario
         $password = "oqpjFF3vQ7Gbp"; // en entorno de desarrollo OK, pero en producción definiremos password
         $dbname = "db_G24";
