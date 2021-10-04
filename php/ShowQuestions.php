@@ -18,9 +18,9 @@
 </style>
       <?php
         $servername = "localhost"; 
-        $username = "root";  // en entorno de desarrollo OK, pero en producción usaremos otro usuario
-        $password = ""; // en entorno de desarrollo OK, pero en producción definiremos password
-        $dbname = "Quiz";
+        $username = "G24";  // en entorno de desarrollo OK, pero en producción usaremos otro usuario
+        $password = "oqpjFF3vQ7Gbp"; // en entorno de desarrollo OK, pero en producción definiremos password
+        $dbname = "db_G24";
 
         // Create connection
         $conn = mysqli_connect($servername, $username, $password, $dbname);
