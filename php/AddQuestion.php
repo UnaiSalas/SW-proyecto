@@ -35,8 +35,7 @@
           echo "</br>";
           echo "<span><a href='QuestionFormWithImage.php'> <h2>Ir a insertar pregunta</h2></a></span>";
         }*/
-        if(isset($_POST['Enviar'])){	
-          echo "Conectado"; 
+        if(isset($_POST['Enviar'])){ 
           $email = $_POST['email'];
           $pregunta = $_POST['pregunta'];
           $right_answer = $_POST['right_answ'];
