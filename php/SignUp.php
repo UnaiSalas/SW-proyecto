@@ -19,13 +19,8 @@
                 <label for="email">Email*: </label>
                 <input type="text" id="email" size="21" name="email" value="" />
                 <br />
-<<<<<<< HEAD
                 <label for="Nombre">Nombre*: </label>
                 <input type="text" id="Nombre" size="21" name="Nombre" value="" />
-=======
-                <label for="Nombre">Nombre y apellidos *</label>
-                <input type="text" id="NombreYApellidos" size="21" name="NombreYApellidos" value="" />
->>>>>>> 6ec1e57c128263ec88b6d732c865c30cbc5a4e08
                 <br />
                 <label for="Apellidos">Apellidos*: </label>
                 <input type="text" id="Apellidos" size="21" name="Apellidos" value="" />
@@ -105,7 +100,6 @@
                 }else if($t_usuario == "Profesor" && !$email_profe){
                     return '<p>El email no coincide con la estructura del email de profesor</p>';
                 }
-<<<<<<< HEAD
                 if($Nombre=="" || $Nombre==null){
                     return '<p>El campo nombre no puede estar vacio</p>';
                 }else if(strlen($Nombre) < 2){
@@ -115,10 +109,6 @@
                     return '<p>El campo apellidos no puede estar vacio</p>';
                 }else if(strlen($Apellidos) < 2){
                     return '<p>Los apellidos no son validos<p>';
-=======
-                if($NombreYApellidos=="" || $NombreYApellidos==null){
-                    return '<p>El campo nombre y apellido no puede estar vacio</p>';
->>>>>>> 6ec1e57c128263ec88b6d732c865c30cbc5a4e08
                 }
                 if($pass=="" || $pass == null || $repass=="" || $repass== null){
                     return '<p>Los campos de contraseñas no pueden estar vacios<p>';
