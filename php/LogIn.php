@@ -32,14 +32,18 @@
                     $mysql= mysqli_connect($server,$user,$pass,$basededatos) or die(mysqli_connect_error());
 
                     $username=$_POST['email'];
-                    $usuarios = mysqli_query( $mysql,"select * from Usuarios where Email ='$username'");
+                    $pass=$_POST['password'];
+                    $usuarios = mysqli_query( $mysql,"select * from Usuarios where Email ='$username' AND Passwords='$pass'");
                     $cont= mysqli_num_rows($usuarios); //Se verifica el total de filas devueltas
-                    mysqli_close( $mysql); //cierra la conexion
-                    if($cont==0){
-                        echo("<script> alert ('BIENVENIDO AL SISTEMA:". $username . "')</script>");
+                    $row = mysqli_fetch_array($usuarios);
+                    if($cont==1){
+                        $url= "?nombre=".$row['Email'];
+                        header("Location: Layout.php.$url");
                         //echo ("Login correcto<p><a href=‘Layout.php'>Puede insertar preguntas</a>");
                     } else {
-                        echo ("Este email ya está registrado");}
+                        echo ("El email o la contraseña facilitados no son correctos");
+                    }
+                    mysqli_close( $mysql); //cierra la conexion
                 }else{
                     echo '<script language="javascript">';
                     echo "alert('" . $error . "')";
@@ -67,10 +71,10 @@
                 $pass=$_POST['password'];
 
                 if($username=="" || $username==null){
-                    return '<p>El campo de email no puede estar vacío<p>';
+                    return 'El campo de email no puede estar vacío';
                 }
                 if($pass=="" || $pass==null){
-                    return '<p>El campo de contraseña no puede estar vacío<p>';
+                    return 'El campo de contraseña no puede estar vacío';
                 }
             }
 

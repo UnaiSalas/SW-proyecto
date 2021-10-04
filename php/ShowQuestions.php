@@ -20,7 +20,7 @@
         include 'DbConfig.php';
 
         // Create connection
-        $conn = mysqli_connect($servername, $username, $password, $dbname);
+        $conn = mysqli_connect($server, $user, $pass, $basededatos);
         echo "Conectado<br>";
         // Check connection
         if (!$conn){
