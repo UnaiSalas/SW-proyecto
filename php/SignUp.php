@@ -10,22 +10,25 @@
     <section class="main" id="s1">
         <div>
             <form id='signup' name='signup' action='SignUp.php' method="POST" onsubmit="">
-                <label for="t_usuario">Tipo usuario *</label>
+                <label for="t_usuario">Tipo usuario*: </label>
                 <select name="t_usuario" id="t_usuario">
                     <option value="Alumno">Alumno</option>
                     <option value="Profesor">Profesor</option>
                 </select>
                 <br />
-                <label for="email">Email *</label>
+                <label for="email">Email*: </label>
                 <input type="text" id="email" size="21" name="email" value="" />
                 <br />
-                <label for="NombreYApellidos">Nombre y apellidos *</label>
-                <input type="text" id="NombreYApellidos" size="21" name="NombreYApellidos" value="" />
+                <label for="Nombre">Nombre*: </label>
+                <input type="text" id="Nombre" size="21" name="Nombre" value="" />
                 <br />
-                <label for="Password">Password *</label>
+                <label for="Apellidos">Apellidos*: </label>
+                <input type="text" id="Apellidos" size="21" name="Apellidos" value="" />
+                <br />
+                <label for="Password">Password*: </label>
                 <input type="password" id="password" name="password" value="" />
                 <br />
-                <label for="RePassword">Repetir Password *</label>
+                <label for="RePassword">Repetir Password*: </label>
                 <input type="password" id="repassword" name="repassword" value="" />
                 <br />
                 <input type="submit" id="signup" name="signup" value="Enviar" />
@@ -58,12 +61,27 @@
                     echo '</script>';
                 }
 
-            }  
+            }
+            /*
+            <?php $errores='';
+            if (isset ($_POST['email'])){
+                $errores = validarEmail();
+            }
+
+            //mostrar formulario
+
+            <span style:'color:red'> <?php echo ($errores)?> </span>
+
+            if ($errores!=''){
+                <scripts location.href = 'destino.php';
+            }
+            */
 
 
             function validacionser(){
                 $t_usuario=$_POST['t_usuario'];
-                $NombreYApellidos =$_POST['NombreYApellidos'];
+                $Nombre =$_POST['Nombre'];
+                $Apellidos =$_POST['Apellidos'];
                 $username=$_POST['email'];
                 $pass=$_POST['password'];
                 $repass=$_POST['repassword'];
@@ -78,16 +96,23 @@
                 }else if($username=="" || $username==null){
                     return '<p>El campo de email no puede estar vacio</p>';
                 }
-                if($NombreYApellidos=="" || $NombreYApellidos==null){
-                    return '<p>El campo nombre y apellido no puede estar vacio</p>';
-                }else if(strlen($NombreYApellidos) < 5){
-                    return '<p>El nombre y apellidos no son validos<p>';
+                if($Nombre=="" || $Nombre==null){
+                    return '<p>El campo nombre no puede estar vacio</p>';
+                }else if(strlen($Nombre) < 2){
+                    return '<p>El nombre no son validos<p>';
+                }
+                if($Apellidos=="" || $Apellidos==null){
+                    return '<p>El campo apellidos no puede estar vacio</p>';
+                }else if(strlen($Apellidos) < 2){
+                    return '<p>Los apellidos no son validos<p>';
                 }
 
                 if($pass=="" || $pass == null || $repass=="" || $repass== null){
                     return '<p>Los campos de contraseñas no pueden estar vacios<p>';
-                }else if($pass != $repass){
-                    return '<p>Las contraseñas deben ser iguales<p>';
+                } else if(strlen($pass) < 8) {
+                    return '<p>La contraseña tiene que tener al menos 8 caracteres<p>';
+                } else if($pass != $repass){
+                    return '<p>Las contraseñas no son iguales<p>';
                 }
 
             }
