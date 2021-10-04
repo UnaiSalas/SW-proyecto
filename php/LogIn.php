@@ -9,14 +9,14 @@
     <?php include '../php/Menus.php' ?>
     <section class="main" id="s1">
         <div>
-            <form id='signup' name='signup' action='LogIn.php' method="POST" onsubmit="">
+            <form id='login' name='login' action='LogIn.php' method="POST" onsubmit="">
                 <label for="email">Email*: </label>
                 <input type="text" id="email" size="21" name="email" value="" />
                 <br />
                 <label for="Password">Password*: </label>
                 <input type="password" id="password" name="password" value="" />
                 <br />
-                <input type="submit" id="sigin" name="sigin" value="Enviar" />
+                <input type="submit" id="login" name="login" value="Enviar" />
             </form>
         </div>
         <?php 
@@ -25,7 +25,7 @@
             $error = "";
 
 
-            if (isset($_POST['signin'])){
+            if (isset($_POST['login'])){
 
                 $error = validacionser();
                 if($error==""){
@@ -73,6 +73,8 @@
                     return '<p>El campo de contraseña no puede estar vacío<p>';
                 }
             }
+
+            //Queda comprobar si el nombre y usuario existen en la base de datos para hacer login
             
     ?>
     </section>

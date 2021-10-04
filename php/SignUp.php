@@ -86,9 +86,13 @@
                 $pass=$_POST['password'];
                 $repass=$_POST['repassword'];
 
-                $palabras=explode(" ",$NombreYApellidos);
-                if((strlen($palabras[0]) < 2 ) && (strlen($palabras[1]) < 2 )){
-                    return '<p>El nombre y apellidos no son validos<p>';
+                $palabrasN=explode(" ",$Nombre);
+                if((strlen($palabrasN[0]) < 2 ) && (strlen($palabrasN[1]) < 2 )){
+                    return '<p>El nombre no es válido<p>';
+                }
+                $palabrasA=explode(" ",$Apellidos);
+                if((strlen($palabrasA[0]) < 2 ) && (strlen($palabrasA[1]) < 2 )){
+                    return '<p>Los apellidos no son válidos<p>';
                 }
                 $email_alumno = preg_match("/^[a-z]+[0-9][0-9][0-9]@ikasle\.ehu\.(eus|es)$/", $username);
                 $email_profe = preg_match("/^([a-z]+\.)?[a-z]+@ehu\.(eus|es)$/", $username);
