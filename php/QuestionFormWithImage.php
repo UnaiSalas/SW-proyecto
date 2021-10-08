@@ -12,7 +12,7 @@
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
-      <form id='fquestion' name='fquestion' action='AddQuestion.php' method="POST" onsubmit="return validarform();">
+      <form id='fquestion' name='fquestion' action=<?='AddQuestion.php?email='.$_GET['email']?> method="POST" onsubmit="return validarform();">
         <label for="email"> Email*: </label>
         <input type="text" id="email" name="email" value=""/>
         <br />

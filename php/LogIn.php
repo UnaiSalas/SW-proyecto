@@ -9,7 +9,7 @@
     <?php include '../php/Menus.php' ?>
     <section class="main" id="s1">
         <div>
-            <form id='login' name='login' action='LogIn.php' method="POST" onsubmit="">
+            <form id='login' name='login' method="POST" onsubmit="">
                 <label for="email">Email*: </label>
                 <input type="text" id="email" size="21" name="email" value="" />
                 <br />
@@ -37,7 +37,7 @@
                     $cont= mysqli_num_rows($usuarios); //Se verifica el total de filas devueltas
                     $row = mysqli_fetch_array($usuarios);
                     if($cont==1){
-                        $url= "?nombre=".$row['Email'];
+                        $url= "?email=".$row['Email'];
                         header("Location: Layout.php.$url");
                         //echo ("Login correcto<p><a href=‘Layout.php'>Puede insertar preguntas</a>");
                     } else {
