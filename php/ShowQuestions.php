@@ -8,11 +8,12 @@
   <section class="main" id="s1">
     <div>
     <style>
-      table
+      table, th, td
         {
           border-style:solid;
           border-width:2px;
           border-color:pink;
+          background-color: #83FAD9;
         }
 
 </style>
@@ -39,7 +40,7 @@
           // esto es para ponerlo más bonito (falta por hacer ya que lo hace mal)
           // probar lo que pone en este enlace: https://es.stackoverflow.com/questions/78414/como-mostrar-los-datos-de-una-base-de-datos-en-una-tabla-en-html-y-php
           
-          echo "<table border='1'>"; // start a table tag in the HTML
+          echo "<div><table >"; // start a table tag in the HTML
           echo "<tr><th>Email</th><th>Pregunta</th><th>Respuesta Correcta</th><th>Respuesta Incorrecta</th><th>Respuesta Incorrecta</th><th>Respuesta Incorrecta</th><th>Complejidad</th><th>Tema</th><th>Imagen</th></tr>";
 
           while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
@@ -65,7 +66,7 @@
               </tr>";  //$row['index'] the index here is a field name
           }
 
-          echo "</table>";
+          echo "</table></div>";
           
         }else{
           echo "0 results";
