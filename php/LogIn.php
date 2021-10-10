@@ -38,7 +38,7 @@
                     $row = mysqli_fetch_array($usuarios);
                     if($cont==1){
                         $url= "?email=".$row['Email'];
-                        header("Location: Layout.php.$url");
+                        header("Location: Layout.php".$url);
                         //echo ("Login correcto<p><a href=‘Layout.php'>Puede insertar preguntas</a>");
                     } else {
                         echo ("El email o la contraseña facilitados no son correctos");
