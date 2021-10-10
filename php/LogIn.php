@@ -33,7 +33,7 @@
 
                     $username=$_POST['email'];
                     $pass=$_POST['password'];
-                    $usuarios = mysqli_query( $mysql,"select * from Usuarios where Email ='$username' AND Passwords='$pass'");
+                    $usuarios = mysqli_query( $mysql,"select * from Usuarios where Email ='$username' AND Password='$pass'");
                     $cont= mysqli_num_rows($usuarios); //Se verifica el total de filas devueltas
                     $row = mysqli_fetch_array($usuarios);
                     if($cont==1){
