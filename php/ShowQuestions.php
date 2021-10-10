@@ -27,7 +27,7 @@
           die("Connection failed: " . mysqli_connect_error());
         }
 
-        $sql = "SELECT email, Pregunta, Right_Answer, Wrong_Answer1, Wrong_Answer2, Wrong_Answer3, Complejidad, Tema FROM Preguntas";
+        $sql = "SELECT email, Pregunta, Right_Answer, Wrong_Answer1, Wrong_Answer2, Wrong_Answer3, Complejidad, Tema, Imagen FROM Preguntas";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0){
@@ -40,7 +40,7 @@
           // probar lo que pone en este enlace: https://es.stackoverflow.com/questions/78414/como-mostrar-los-datos-de-una-base-de-datos-en-una-tabla-en-html-y-php
           
           echo "<table border='1'>"; // start a table tag in the HTML
-          echo "<tr><th>Email</th><th>Pregunta</th><th>Respuesta Correcta</th><th>Respuesta Incorrecta</th><th>Respuesta Incorrecta</th><th>Respuesta Incorrecta</th><th>Complejidad</th><th>Tema</th></tr>";
+          echo "<tr><th>Email</th><th>Pregunta</th><th>Respuesta Correcta</th><th>Respuesta Incorrecta</th><th>Respuesta Incorrecta</th><th>Respuesta Incorrecta</th><th>Complejidad</th><th>Tema</th><th>Imagen</th></tr>";
 
           while($row = mysqli_fetch_array($result)){   //Creates a loop to loop through results
             if ($row['Complejidad']==1){
@@ -52,7 +52,17 @@
             if ($row['Complejidad']==3){
               $comp = "Alta";
             }
-            echo "<tr><td>" . $row['email'] . "</td><td>" . $row['Pregunta'] . "</td><td>" . $row['Right_Answer'] . "</td><td>" . $row['Wrong_Answer1'] . "</td><td>" . $row['Wrong_Answer2'] . "</td><td>" . $row['Wrong_Answer3'] . "</td><td>" . $comp . "</td><td>" . $row['Tema'] . "</td></tr>";  //$row['index'] the index here is a field name
+            echo 
+              "<tr>
+                <td>" . $row['email'] . "</td>
+                <td>" . $row['Pregunta'] . "</td>
+                <td>" . $row['Right_Answer'] . "</td>
+                <td>" . $row['Wrong_Answer1'] . "</td>
+                <td>" . $row['Wrong_Answer2'] . "</td>
+                <td>" . $row['Wrong_Answer3'] . "</td>
+                <td>" . $comp . "</td>
+                <td>" . $row['Tema'] . "</td><td><img width='80px' height='80px' src='".$row['Imagen']."' /></td>
+              </tr>";  //$row['index'] the index here is a field name
           }
 
           echo "</table>";

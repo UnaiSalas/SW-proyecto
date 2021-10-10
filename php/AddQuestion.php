@@ -10,6 +10,7 @@
 
       <?php
         include 'DbConfig.php';
+        $url = "?email=".$_GET['email'];
 
         // Create connection
         $conn = mysqli_connect($server, $user, $pass, $basededatos);
@@ -44,16 +45,24 @@
           $wrong_answer3 = $_POST['wrong_answ_3'];
           $dificultad = $_POST['dificultad'];
           $tema = $_POST['tema'];
-          $sql = "INSERT INTO Preguntas (Email,Pregunta,Right_Answer,Wrong_Answer1,Wrong_Answer2,Wrong_Answer3,Complejidad,Tema)
-          VALUES ('$email','$pregunta','$right_answer','$wrong_answer1','$wrong_answer2','$wrong_answer3','$dificultad','$tema')";
+          $name=$_FILES['imagen']['name'];
+          $tempname=$_FILES['imagen']['tmp_name'];
+          $dir='../images/ImagenesBD/'.$name;
+
+
+          $sql = "INSERT INTO Preguntas (Email,Pregunta,Right_Answer,Wrong_Answer1,Wrong_Answer2,Wrong_Answer3,Complejidad,Tema,Imagen)
+          VALUES ('$email','$pregunta','$right_answer','$wrong_answer1','$wrong_answer2','$wrong_answer3','$dificultad','$tema','$dir')";
           if (mysqli_query($conn, $sql)) {
-            echo "<h2>Ir a insertar pregunta</h2>";
-            echo "</br>";
-            echo "<span><a href='ShowQuestions.php'> Mostrar preguntas almacenadas</span>";
+            if(move_uploaded_file($tempname, $dir)){
+              
+              echo "<h2>Ir a insertar pregunta</h2>";
+              echo "</br>";
+              echo "<span><a href='ShowQuestions.php.$url'> Mostrar preguntas almacenadas</span>";
+            }
           } else {
             echo "<h2>Se ha producido un error. Intentelo de nuevo.</h2>";
             echo "</br>";
-            echo "<span><a href='QuestionFormWithImage.php'> <h2>Ir a insertar pregunta</h2></a></span>";
+            echo "<span><a href='QuestionFormWithImage.php.$url'> <h2>Ir a insertar pregunta</h2></a></span>";
           }
         }
         mysqli_close($conn);

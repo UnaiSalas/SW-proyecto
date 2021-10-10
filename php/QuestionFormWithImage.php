@@ -12,7 +12,7 @@
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
     <div>
-      <form id='fquestion' name='fquestion' action=<?='AddQuestion.php?email='.$_GET['email']?> method="POST" onsubmit="return validarform();">
+      <form id='fquestion' name='fquestion' action=<?='AddQuestion.php?email='.$_GET['email']?> method="POST" onsubmit="return validarform();" enctype="multipart/form-data">
         <label for="email"> Email*: </label>
         <input type="text" id="email" name="email" value=""/>
         <br />
@@ -42,7 +42,7 @@
         <input type="text" id="tema" name="tema" value=""/>
         <br />
         <input type='file' name="imagen" id="imagen" onchange="readURL(this);" /><br />
-        <img id="image" src="../images/placeholder.png" alt="your image" width='180' height='180' /><br />
+        <img id="image" src="../images/ImagenesBD/placeholder.png" alt="your image" width='180' height='180' /><br />
         <input type="submit" value="Enviar" id="Enviar" name="Enviar">
       </form>
 
