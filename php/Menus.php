@@ -10,10 +10,10 @@
       </header>
 
       <nav class='main' id='n1' role='navigation'>
-        <span><a href='Layout.php'.$url>Inicio</a></span>
-        <span><a href='QuestionFormWithImage.php'.$url> Insertar Pregunta</a></span>
-        <span><a href='ShowQuestions.php'.$url> Ver Preguntas</a></span>
-        <span><a href='Credits.php'.$url>Creditos</a></span>
+        <span><a href='Layout.php".$url. "'>Inicio</a></span>
+        <span><a href='QuestionFormWithImage.php".$url."'> Insertar Pregunta</a></span>
+        <span><a href='ShowQuestions.php".$url."'> Ver Preguntas</a></span>
+        <span><a href='Credits.php".$url."'>Creditos</a></span>
       </nav>
     ");
   }else{
