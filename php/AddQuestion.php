@@ -54,18 +54,52 @@
             $dir='../images/ImagenesBD/placeholder.png';
           }
 
-          $sql = "INSERT INTO Preguntas (Email,Pregunta,Right_Answer,Wrong_Answer1,Wrong_Answer2,Wrong_Answer3,Complejidad,Tema,Imagen)
-          VALUES ('$email','$pregunta','$right_answer','$wrong_answer1','$wrong_answer2','$wrong_answer3','$dificultad','$tema','$dir')";
-          if (mysqli_query($conn, $sql)) {
-            if(move_uploaded_file($tempname, $dir)){
-              echo "<h2>Ir a insertar pregunta</h2>";
-              echo "</br>";
-              echo "<span><a href='ShowQuestions.php.$url'> Mostrar preguntas almacenadas</span>";
-            }
+          $email_alumno = preg_match("/^[a-z]+[0-9][0-9][0-9]@ikasle\.ehu\.(eus|es)$/", $username);
+          $email_profe = preg_match("/^([a-z]+\.)?[a-z]+@ehu\.(eus|es)$/", $username);
+
+          if (empty($email)){
+            $error = "El campo email no puede estar vacío";
+            $code = 1;
+          } else if (empty($pregunta)){
+            $error = "El campo pregunta no puede estar vacío";
+            $code = 1;
+          } else if (empty($right_answer)){
+            $error = "Los campos de respuesta no pueden estar vacíos";
+            $code = 1;
+          } else if (empty($wrong_answer1)){
+            $error = "Los campos de respuesta no pueden estar vacíos";
+            $code = 1;
+          } else if (empty($wrong_answer2)){
+            $error = "Los campos de respuesta no pueden estar vacíos";
+            $code = 1;
+          } else if (empty($wrong_answer3)){
+            $error = "Los campos de respuesta no pueden estar vacíos";
+            $code = 1;
+          } else if (empty($tema)){
+            $error = "El campo de tema no puede estar vacío";
+            $code = 1;
+          } else if (!preg_match($email_alumno, $email) || !preg_match($email_profe, $email)){
+            $error = "El campo de email no es correcto";
+            $code = 2;
+          } else if (strlen($pregunta) < 10){
+            $error = "El campo de pregunta tiene que tener como mínimo 10 caracteres";
+            $code = 3;
           } else {
-            echo "<h2>Se ha producido un error. Intentelo de nuevo.</h2>";
-            echo "</br>";
-            echo "<span><a href='QuestionFormWithImage.php.$url'> <h2>Ir a insertar pregunta</h2></a></span>";
+
+            $sql = "INSERT INTO Preguntas (Email,Pregunta,Right_Answer,Wrong_Answer1,Wrong_Answer2,Wrong_Answer3,Complejidad,Tema,Imagen)
+            VALUES ('$email','$pregunta','$right_answer','$wrong_answer1','$wrong_answer2','$wrong_answer3','$dificultad','$tema','$dir')";
+            if (mysqli_query($conn, $sql)) {
+              if(move_uploaded_file($tempname, $dir)){
+                echo "<h2>Ir a insertar pregunta</h2>";
+                echo "</br>";
+                echo "<span><a href='ShowQuestions.php.$url'> Mostrar preguntas almacenadas</span>";
+              }
+            } else {
+              echo "<h2>Se ha producido un error. Intentelo de nuevo.</h2>";
+              echo "</br>";
+              echo "<span><a href='QuestionFormWithImage.php.$url'> <h2>Ir a insertar pregunta</h2></a></span>";
+            }
+
           }
         }
         mysqli_close($conn);
