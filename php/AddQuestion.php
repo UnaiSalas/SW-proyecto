@@ -79,22 +79,21 @@
           } else if (empty($tema)){
             $error = "El campo de tema no puede estar vacío";
             $code = 1;
-          } else if (!$email_alumno){
-            if (!$email_profe){
+          } else if (!preg_match("/^[a-z]+[0-9][0-9][0-9]@ikasle\.ehu\.(eus|es)$/", $username)){
+            if (preg_match("/^([a-z]+\.)?[a-z]+@ehu\.(eus|es)$/", $username)){
               $error = "El campo de email no es correcto";
               $code = 2;
             }
           } else if (strlen($pregunta) < 10){
             $error = "El campo de pregunta tiene que tener como mínimo 10 caracteres";
             $code = 3;
-          } //else {
+          }
           if (!empty($error)){
              echo "<h2>.$error<h2>";
              echo "</br>";
              echo "Codigo de error: .$code";
           } else {
             echo "<h2>Todo correcto<h2>";
-          }
 
             $sql = "INSERT INTO Preguntas (Email,Pregunta,Right_Answer,Wrong_Answer1,Wrong_Answer2,Wrong_Answer3,Complejidad,Tema,Imagen)
             VALUES ('$email','$pregunta','$right_answer','$wrong_answer1','$wrong_answer2','$wrong_answer3','$dificultad','$tema','$dir')";
@@ -110,7 +109,7 @@
               echo "<span><a href='QuestionFormWithImage.php.$url'> <h2>Ir a insertar pregunta</h2></a></span>";
             }
 
-          //}
+          }
         }
         mysqli_close($conn);
       ?>
