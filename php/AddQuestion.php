@@ -110,8 +110,8 @@
             }
 
           }
-          //header("Location: QuestionFormWithImage.php".$url);
         }
+        header("Location: QuestionFormWithImage.php".$url);
         mysqli_close($conn);
       ?>
     </div>
