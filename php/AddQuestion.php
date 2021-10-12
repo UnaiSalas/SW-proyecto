@@ -75,9 +75,9 @@
           } else if (empty($wrong_answer3)){
             $error = "Los campos de respuesta no pueden estar vacíos";
             $code = 1;
-          } else if (empty($tema)){
-            $error = "El campo de tema no puede estar vacío";
-            $code = 1;
+          //} else if (empty($tema)){
+            //$error = "El campo de tema no puede estar vacío";
+            //$code = 1;
           } else if (!preg_match($email_alumno, $email) || !preg_match($email_profe, $email)){
             $error = "El campo de email no es correcto";
             $code = 2;
