@@ -92,7 +92,7 @@
             echo '<script language="javascript">';
             echo "alert('" . $error . "')";
             echo '</script>';
-            echo "<a href='QuestionFormWithImage.php" . $error . "'>Volver</a>";
+            echo "<a href='QuestionFormWithImage.php" . $url . "'>Volver</a>";
           } else {
             echo "<h2>Pregunta insertada correctamente<h2>";
 
