@@ -79,9 +79,11 @@
           } else if (empty($tema)){
             $error = "El campo de tema no puede estar vacío";
             $code = 1;
-          } else if (!$email_alumno || !$email_profe){
-            $error = "El campo de email no es correcto";
-            $code = 2;
+          } else if (!$email_alumno){
+            if (!$email_profe){
+              $error = "El campo de email no es correcto";
+              $code = 2;
+            }
           } else if (strlen($pregunta) < 10){
             $error = "El campo de pregunta tiene que tener como mínimo 10 caracteres";
             $code = 3;
