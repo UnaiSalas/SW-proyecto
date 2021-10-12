@@ -89,11 +89,13 @@
             $code = 3;
           }
           if (!empty($error)){
-             echo "<h2>.$error<h2>";
-             echo "</br>";
-             echo "Codigo de error: .$code";
+             ?>
+              <script>
+                alert($error);
+              </script>
+            <?php
           } else {
-            echo "<h2>Todo correcto<h2>";
+            echo "<h2>Pregunta insertada correctamente<h2>";
 
             $sql = "INSERT INTO Preguntas (Email,Pregunta,Right_Answer,Wrong_Answer1,Wrong_Answer2,Wrong_Answer3,Complejidad,Tema,Imagen)
             VALUES ('$email','$pregunta','$right_answer','$wrong_answer1','$wrong_answer2','$wrong_answer3','$dificultad','$tema','$dir')";
