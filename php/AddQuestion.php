@@ -89,11 +89,9 @@
             $code = 3;
           }
           if (!empty($error)){
-             ?>
-              <script>
-                alert($error);
-              </script>
-            <?php
+              echo "<script language='javascript'>";
+                echo "alert($error);";
+              echo "</script>";
           } else {
             echo "<h2>Pregunta insertada correctamente<h2>";
 
