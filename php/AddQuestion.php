@@ -92,7 +92,6 @@
             echo '<script language="javascript">';
             echo "alert('" . $error . "')";
             echo '</script>';
-            header("Location: QuestionFormWithImage.php".$url);
           } else {
             echo "<h2>Pregunta insertada correctamente<h2>";
 
@@ -111,6 +110,7 @@
             }
 
           }
+          header("Location: QuestionFormWithImage.php".$url);
         }
         mysqli_close($conn);
       ?>
