@@ -84,7 +84,7 @@
           } else if (strlen($pregunta) < 10){
             $error = "El campo de pregunta tiene que tener como mínimo 10 caracteres";
             $code = 3;
-          } else {
+          } //else {
 
             $sql = "INSERT INTO Preguntas (Email,Pregunta,Right_Answer,Wrong_Answer1,Wrong_Answer2,Wrong_Answer3,Complejidad,Tema,Imagen)
             VALUES ('$email','$pregunta','$right_answer','$wrong_answer1','$wrong_answer2','$wrong_answer3','$dificultad','$tema','$dir')";
@@ -100,7 +100,7 @@
               echo "<span><a href='QuestionFormWithImage.php.$url'> <h2>Ir a insertar pregunta</h2></a></span>";
             }
 
-          }
+          //}
         }
         mysqli_close($conn);
       ?>
