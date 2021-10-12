@@ -80,7 +80,7 @@
             $error = "El campo de tema no puede estar vacío";
             $code = 1;
           } else if (!preg_match("/^[a-z]+[0-9][0-9][0-9]@ikasle\.ehu\.(eus|es)$/", $username)){
-            if (preg_match("/^([a-z]+\.)?[a-z]+@ehu\.(eus|es)$/", $username)){
+            if (!preg_match("/^([a-z]+\.)?[a-z]+@ehu\.(eus|es)$/", $username)){
               $error = "El campo de email no es correcto";
               $code = 2;
             }

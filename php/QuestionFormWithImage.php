@@ -5,8 +5,10 @@
 </head>
 <body>
 
+  <!--
   <script src="../js/jquery-3.4.1.min.js" type="text/javascript"></script>
   <script src="../js/ValidateFieldsQuestionJQ.js"></script>
+  -->
   <script type="text/javascript" src="../js/ShowImageInForm.js"></script>
 
   <?php include '../php/Menus.php' ?>
