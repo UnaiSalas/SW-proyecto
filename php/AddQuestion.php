@@ -57,6 +57,7 @@
           $email_alumno = preg_match("/^[a-z]+[0-9][0-9][0-9]@ikasle\.ehu\.(eus|es)$/", $username);
           $email_profe = preg_match("/^([a-z]+\.)?[a-z]+@ehu\.(eus|es)$/", $username);
 
+          $error='';
           if (empty($email)){
             $error = "El campo email no puede estar vacío";
             $code = 1;
@@ -75,9 +76,9 @@
           } else if (empty($wrong_answer3)){
             $error = "Los campos de respuesta no pueden estar vacíos";
             $code = 1;
-          //} else if (empty($tema)){
-            //$error = "El campo de tema no puede estar vacío";
-            //$code = 1;
+          } else if (empty($tema)){
+            $error = "El campo de tema no puede estar vacío";
+            $code = 1;
           } else if (!preg_match($email_alumno, $email) || !preg_match($email_profe, $email)){
             $error = "El campo de email no es correcto";
             $code = 2;
@@ -85,6 +86,13 @@
             $error = "El campo de pregunta tiene que tener como mínimo 10 caracteres";
             $code = 3;
           } //else {
+          if (!empty($error)){
+             echo "<h2>.$error<h2>";
+             echo "</br>";
+             echo "Codigo de error: .$code";
+          } else {
+            echo "<h2>Todo correcto<h2>";
+          }
 
             $sql = "INSERT INTO Preguntas (Email,Pregunta,Right_Answer,Wrong_Answer1,Wrong_Answer2,Wrong_Answer3,Complejidad,Tema,Imagen)
             VALUES ('$email','$pregunta','$right_answer','$wrong_answer1','$wrong_answer2','$wrong_answer3','$dificultad','$tema','$dir')";
