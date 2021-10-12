@@ -91,7 +91,7 @@
           if (!empty($error)){
             echo '<script language="javascript">';
             echo "alert('" . $error . "')";
-            echo "window.location = 'QuestionFormWithImage.php.$url':";
+            echo "history.back()";
             echo '</script>';
           } else {
             echo "<h2>Pregunta insertada correctamente<h2>";
