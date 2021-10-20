@@ -114,6 +114,40 @@
         }
         mysqli_close($conn);
       ?>
+
+
+
+      <!-- Laboratorio 5 (XML) -->
+      <!-- https://diego.com.es/tutorial-de-simplexml -->
+      <!-- https://www.php.net/manual/es/simplexmlelement.addattribute.php -->
+      <?php
+      $xml_path = '../xml/Questions,xml';
+      if(!$xml = simplexml_load_file($xml_path)){
+          echo "No se ha podido cargar el archivo XML";
+      } else {
+          echo "El archivo XML se ha cargado correctamente";
+          // Nuevo objeto SimpleXMLElement al que se le pasa un archivo xml
+          $questions = new SimpleXMLElement($xml_path, 0, true);
+          // Añadimos una pregunta
+          $numQuestions = $questions->count();
+          $newQuestion = $questions->addChild('assessmentItem');
+          $newQuestion->addChild('itemBody', $email);
+          $newQuestion->correctResponse->addChild('response', $right_answer);
+          $newQuestion->incorrectResponses->addChild('response', $wrong_answer1);
+          $newQuestion->incorrectResponses->addChild('response', $wrong_answer2);
+          $newQuestion->incorrectResponses->addChild('response', $wrong_answer3);
+          var_dump($questions->assessmentItem[5]);
+
+          if($questions->count() == $numQuestions+1){
+            echo "Se ha añadido la pregunta correctamente";
+          } else {
+            echo "Ha habido un error al añadir la pregunta";
+          }
+      }
+      ?>
+
+
+
     </div>
   </section>
   <?php include '../html/Footer.html' ?>
