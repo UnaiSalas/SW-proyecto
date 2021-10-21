@@ -121,7 +121,7 @@
       <!-- https://diego.com.es/tutorial-de-simplexml -->
       <!-- https://www.php.net/manual/es/simplexmlelement.addattribute.php -->
       <?php
-      $xml_path = '../xml/Questions,xml';
+      $xml_path = '../xml/Questions.xml';
       if(!$xml = simplexml_load_file($xml_path)){
           echo "No se ha podido cargar el archivo XML";
       } else {
