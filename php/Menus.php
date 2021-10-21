@@ -13,6 +13,7 @@
         <span><a href='Layout.php".$url. "'>Inicio</a></span>
         <span><a href='QuestionFormWithImage.php".$url."'> Insertar Pregunta</a></span>
         <span><a href='ShowQuestions.php".$url."'> Ver Preguntas</a></span>
+        <span><a href='ShowXmlQuestions.php".$url."'> Ver Preguntas XML</a></span>
         <span><a href='Credits.php".$url."'>Creditos</a></span>
       </nav>
     ");

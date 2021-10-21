@@ -2,7 +2,7 @@
 <assessmentItems>
 	<assessmentItem subject="Web" author="jvadillo001@ikasle.ehu.eus">
 		<itemBody>
-			<p>Tag HTML para a&#xF1;adir un formulario</p>
+			<p>Tag HTML para añadir un formulario</p>
 		</itemBody>
 		<correctResponse>
 			<response>
@@ -17,8 +17,8 @@
 	</assessmentItem>
 		<assessmentItem subject="Internet" author="rarruabarrena001@ikasle.ehu.eus">
 		<itemBody>
-			<p>Este protocolo acabar&#xE1; funcionando
-			incluso entre dos latas unidas por un cord&#xF3;n</p>
+			<p>Este protocolo acabará funcionando
+			incluso entre dos latas unidas por un cordón</p>
 		</itemBody>
 		<correctResponse>
 			<response>
@@ -31,4 +31,4 @@
 			<response> Ninguna es correcta </response>
 		</incorrectResponses>
 	</assessmentItem>
-</assessmentItems>
+<assessmentItem subject="q" author="usalas001@ikasle.ehu.eus"><itemBody><p>dasdasdasdasd</p></itemBody><correctResponse><response>dasdasd</response></correctResponse><incorrectResponse><response>q</response><response>q</response><response>q</response></incorrectResponse></assessmentItem><assessmentItem subject="q" author="usalas001@ikasle.ehu.eus"><itemBody><p>dasdasdasdasd</p></itemBody><correctResponse><response>dasdasd</response></correctResponse><incorrectResponse><response>q</response><response>q</response><response>q</response></incorrectResponse></assessmentItem><assessmentItem subject="q" author="usalas001@ikasle.ehu.eus"><itemBody><p>dasdasdasdasd</p></itemBody><correctResponse><response>dasdasd</response></correctResponse><incorrectResponse><response>q</response><response>q</response><response>q</response></incorrectResponse></assessmentItem><assessmentItem subject="q" author="usalas001@ikasle.ehu.eus"><itemBody><p>dasdasdasdasd</p></itemBody><correctResponse><response>dasdasd</response></correctResponse><incorrectResponse><response>q</response><response>q</response><response>q</response></incorrectResponse></assessmentItem></assessmentItems>

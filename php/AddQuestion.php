@@ -54,8 +54,8 @@
             $dir='../images/ImagenesBD/placeholder.png';
           }
 
-          $email_alumno = preg_match("/^[a-z]+[0-9][0-9][0-9]@ikasle\.ehu\.(eus|es)$/", $username);
-          $email_profe = preg_match("/^([a-z]+\.)?[a-z]+@ehu\.(eus|es)$/", $username);
+          $email_alumno = preg_match("/^[a-z]+\\d{3}@ikasle\.ehu\.(eus|es)$/", $email);
+          $email_profe = preg_match("/^([a-z]+\.)?[a-z]+@ehu\.(eus|es)$/", $email);
 
           $error='';
           if (empty($email)){
@@ -79,11 +79,9 @@
           } else if (empty($tema)){
             $error = "El campo de tema no puede estar vacío";
             $code = 1;
-          } else if (!preg_match("/^[a-z]+[0-9][0-9][0-9]@ikasle\.ehu\.(eus|es)$/", $username)){
-            if (!preg_match("/^([a-z]+\.)?[a-z]+@ehu\.(eus|es)$/", $username)){
-              $error = "El campo de email no es correcto";
-              $code = 2;
-            }
+          } else if (!($email_alumno || $email_profe)){
+            $error = "El email no es correcto";
+            $code=2;
           } else if (strlen($pregunta) < 10){
             $error = "El campo de pregunta tiene que tener como mínimo 10 caracteres";
             $code = 3;
@@ -126,23 +124,21 @@
           echo "No se ha podido cargar el archivo XML";
       } else {
           echo "El archivo XML se ha cargado correctamente";
-          // Nuevo objeto SimpleXMLElement al que se le pasa un archivo xml
-          $questions = new SimpleXMLElement($xml_path, 0, true);
-          // Añadimos una pregunta
-          $numQuestions = $questions->count();
-          $newQuestion = $questions->addChild('assessmentItem');
-          $newQuestion->addChild('itemBody', $email);
-          $newQuestion->correctResponse->addChild('response', $right_answer);
-          $newQuestion->incorrectResponses->addChild('response', $wrong_answer1);
-          $newQuestion->incorrectResponses->addChild('response', $wrong_answer2);
-          $newQuestion->incorrectResponses->addChild('response', $wrong_answer3);
-          var_dump($questions->assessmentItem[5]);
+          $assessment = $xml->addChild('assessmentItem');
+          $assessment -> addAttribute('subject', $tema);
+          $assessment -> addAttribute('author',$email);
+          $pregunta_xml = $assessment -> addChild('itemBody');
+          $pregunta_xml -> addChild('p', $pregunta);
+          $correcta = $assessment ->addChild('correctResponse');
+          $correcta ->addChild('response', $right_answer);
+          $incorrecta = $assessment ->addChild('incorrectResponse');
+          $incorrecta ->addChild('response', $wrong_answer1);
+          $incorrecta ->addChild('response', $wrong_answer2);
+          $incorrecta ->addChild('response', $wrong_answer3);
 
-          if($questions->count() == $numQuestions+1){
-            echo "Se ha añadido la pregunta correctamente";
-          } else {
-            echo "Ha habido un error al añadir la pregunta";
-          }
+          $xml->asXML('../xml/Questions.xml');
+          echo "</br>";
+          echo "Guardada en el XML";
       }
       ?>
 
