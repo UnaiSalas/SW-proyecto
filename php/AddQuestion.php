@@ -142,6 +142,24 @@
       }
       ?>
 
+      <?php
+      $json_path = '../json/Questions.json';
+      if(!$archivo = file_get_contents($json_path)){
+        echo "No se ha podido cargar el archivo JSON";
+      }else{
+        echo "Se ha cargado el archivo JSON";
+        $array = json_decode($archivo);
+        $pregunta_JSON = new stdClass();
+        $pregunta_JSON->subject=$tema;
+        $pregunta_JSON->author=$email;
+        //$pregunta_JSON->itemBody
+        //$pregunta_JSON->incorrectResponses->array("value"->array($wrong_answer1,$wrong_answer2,$wrong_answer3));
+      }
+
+      
+      
+      ?>
+
 
 
     </div>
