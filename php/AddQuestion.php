@@ -152,7 +152,7 @@
         $pregunta_JSON = new stdClass();
         $pregunta_JSON->subject=$tema;
         $pregunta_JSON->author=$email;
-        $pregunta_JSON->itemBody=array("p", $pregunta);
+        $pregunta_JSON->itemBody->p=$pregunta;
         $pregunta_JSON->correctResponse=array("value", $right_answer);
         $pregunta_JSON->incorrectResponses=array("value", array($wrong_answer1,$wrong_answer2,$wrong_answer3));
         $preguntaarray[0]=$pregunta_JSON;
