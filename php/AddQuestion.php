@@ -153,8 +153,8 @@
         $pregunta_JSON->subject=$tema;
         $pregunta_JSON->author=$email;
         $pregunta_JSON->itemBody->p=$pregunta;
-        $pregunta_JSON->correctResponse=array("value", $right_answer);
-        $pregunta_JSON->incorrectResponses=array("value", array($wrong_answer1,$wrong_answer2,$wrong_answer3));
+        $pregunta_JSON->correctResponse->value=$right_answer;
+        $pregunta_JSON->incorrectResponses->value=array($wrong_answer1,$wrong_answer2,$wrong_answer3);
         $preguntaarray[0]=$pregunta_JSON;
         array_push($array->assessmentItems, $preguntaarray[0]);
         $jsonData = json_encode($array);
