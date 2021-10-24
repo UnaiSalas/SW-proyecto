@@ -94,6 +94,55 @@
           } else {
             echo "<h2>Pregunta insertada correctamente<h2>";
 
+            //XML y JSON
+            $xml_path = '../xml/Questions.xml';
+            if(!$xml = simplexml_load_file($xml_path)){
+                echo "No se ha podido cargar el archivo XML";
+            } else {
+                echo "El archivo XML se ha cargado correctamente";
+                $assessment = $xml->addChild('assessmentItem');
+                $assessment -> addAttribute('subject', $tema);
+                $assessment -> addAttribute('author',$email);
+                $pregunta_xml = $assessment -> addChild('itemBody');
+                $pregunta_xml -> addChild('p', $pregunta);
+                $correcta = $assessment ->addChild('correctResponse');
+                $correcta ->addChild('response', $right_answer);
+                $incorrecta = $assessment ->addChild('incorrectResponse');
+                $incorrecta ->addChild('response', $wrong_answer1);
+                $incorrecta ->addChild('response', $wrong_answer2);
+                $incorrecta ->addChild('response', $wrong_answer3);
+
+                $xml->asXML('../xml/Questions.xml');
+                echo "</br>";
+                echo "Guardada en el XML";
+            }
+            ?>
+
+            <?php
+            $json_path = '../json/Questions.json';
+            if(!$archivo = file_get_contents($json_path)){
+              echo "No se ha podido cargar el archivo JSON";
+            }else{
+              echo "Se ha cargado el archivo JSON";
+              $array = json_decode($archivo);
+              $pregunta_JSON = new stdClass();
+              $pregunta_JSON->subject=$tema;
+              $pregunta_JSON->author=$email;
+              $pregunta_JSON->itemBody->p=$pregunta;
+              $pregunta_JSON->correctResponse->value=$right_answer;
+              $pregunta_JSON->incorrectResponses->value=array($wrong_answer1,$wrong_answer2,$wrong_answer3);
+              $preguntaarray[0]=$pregunta_JSON;
+              array_push($array->assessmentItems, $preguntaarray[0]);
+              $jsonData = json_encode($array);
+              $jsonData = str_replace('{', '{'.PHP_EOL, $jsonData);
+              $jsonData = str_replace(',', ','.PHP_EOL, $jsonData);
+              $jsonData = str_replace('}', PHP_EOL.'}', $jsonData);
+              file_put_contents('../json/Questions.json',$jsonData);
+              echo "Insertado el JSON";
+            
+            }
+
+
             $sql = "INSERT INTO Preguntas (Email,Pregunta,Right_Answer,Wrong_Answer1,Wrong_Answer2,Wrong_Answer3,Complejidad,Tema,Imagen)
             VALUES ('$email','$pregunta','$right_answer','$wrong_answer1','$wrong_answer2','$wrong_answer3','$dificultad','$tema','$dir')";
             if (mysqli_query($conn, $sql)) {
@@ -112,65 +161,6 @@
         }
         mysqli_close($conn);
       ?>
-
-
-
-      <!-- Laboratorio 5 (XML) -->
-      <!-- https://diego.com.es/tutorial-de-simplexml -->
-      <!-- https://www.php.net/manual/es/simplexmlelement.addattribute.php -->
-      <?php
-      $xml_path = '../xml/Questions.xml';
-      if(!$xml = simplexml_load_file($xml_path)){
-          echo "No se ha podido cargar el archivo XML";
-      } else {
-          echo "El archivo XML se ha cargado correctamente";
-          $assessment = $xml->addChild('assessmentItem');
-          $assessment -> addAttribute('subject', $tema);
-          $assessment -> addAttribute('author',$email);
-          $pregunta_xml = $assessment -> addChild('itemBody');
-          $pregunta_xml -> addChild('p', $pregunta);
-          $correcta = $assessment ->addChild('correctResponse');
-          $correcta ->addChild('response', $right_answer);
-          $incorrecta = $assessment ->addChild('incorrectResponse');
-          $incorrecta ->addChild('response', $wrong_answer1);
-          $incorrecta ->addChild('response', $wrong_answer2);
-          $incorrecta ->addChild('response', $wrong_answer3);
-
-          $xml->asXML('../xml/Questions.xml');
-          echo "</br>";
-          echo "Guardada en el XML";
-      }
-      ?>
-
-      <?php
-      $json_path = '../json/Questions.json';
-      if(!$archivo = file_get_contents($json_path)){
-        echo "No se ha podido cargar el archivo JSON";
-      }else{
-        echo "Se ha cargado el archivo JSON";
-        $array = json_decode($archivo);
-        $pregunta_JSON = new stdClass();
-        $pregunta_JSON->subject=$tema;
-        $pregunta_JSON->author=$email;
-        $pregunta_JSON->itemBody->p=$pregunta;
-        $pregunta_JSON->correctResponse->value=$right_answer;
-        $pregunta_JSON->incorrectResponses->value=array($wrong_answer1,$wrong_answer2,$wrong_answer3);
-        $preguntaarray[0]=$pregunta_JSON;
-        array_push($array->assessmentItems, $preguntaarray[0]);
-        $jsonData = json_encode($array);
-        $jsonData = str_replace('{', '{'.PHP_EOL, $jsonData);
-        $jsonData = str_replace(',', ','.PHP_EOL, $jsonData);
-        $jsonData = str_replace('}', PHP_EOL.'}', $jsonData);
-        file_put_contents('../json/Questions.json',$jsonData);
-        echo "Insertado el JSON";
-      
-      }
-
-      
-      
-      ?>
-
-
 
     </div>
   </section>
