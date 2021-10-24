@@ -31,10 +31,13 @@
             $array=json_decode($data);
             echo '<table border=2 id="showQuestionTable"><tr> <th> AUTOR </th> <th> ENUNCIADO </th> <th> RESPUESTA CORRECTA</th> </tr>';
 
-            foreach ($array as $pregunta) {
-                $enunciado= $pregunta->itemBody[1];
+            foreach ($array->assessmentItems as $pregunta) {
+                //$enunciado= $pregunta->itemBody[1];
+                //$email=$pregunta->author;
+                //$resCorrecta=$pregunta->correctResponse[1];
                 $email=$pregunta->author;
-                $resCorrecta=$pregunta->correctResponse[1];
+                $enunciado=$pregunta->itemBody->p;
+                $resCorrecta=$pregunta->correctResponse->value;
 
                 echo '<tr>
                         <td>' .$email .'</td>
