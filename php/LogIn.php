@@ -1,88 +1,94 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <?php include '../html/Head.html' ?>
+  <?php include '../html/Head.html'?>
 </head>
-
 <body>
-    <?php include '../php/Menus.php' ?>
-    <section class="main" id="s1">
-        <div>
-            <form id='login' name='login' method="POST" onsubmit="">
-                <label for="email">Email*: </label>
-                <input type="text" id="email" size="21" name="email" value="" />
-                <br />
-                <label for="Password">Password*: </label>
-                <input type="password" id="password" name="password" value="" />
-                <br />
-                <input type="submit" id="login" name="login" value="Enviar" />
-            </form>
-        </div>
-        <?php 
-            include 'DbConfig.php';
+  <?php include '../php/Menus.php' ?>
+  <section class="main" id="s1">
+    <div>
+        <style>
+          .imgPrev {
+            display: block;
+            width: auto;
+            height: 100%;
+          }
+        </style>
+        <form id="flogin" name="flogin" action="LogIn.php" method="POST" actionstyle="width: 60%; margin: 0px auto;">
+          <table style="border:4px solid #c1e9f6;" bgcolor="#9cc4e8">
+            <caption style="text-align:left">
+              <h2>Login de usuario</h2> 
+            </caption>
+            <tr>
+              <td align="right">Dirección de correo (*): </td>
+              <td align="left"><input type="text" id="correo" name="correo" autofocus></td>
+            </tr>
+            <tr>
+              <td align="right">Contraseña (*): </td>
+              <td align="left"><input style="width: 600px;" type="password" id="userpass" name="userpass" autofocus></td>
+            </tr>
+            <tr>
+            <td></td>                               <!-- NO VALIDA SIMPLEMENTE EJECUTA EL SCRIPT-->
+              <td align="left"><input type="submit" id="botonLogin" name="botonLogin" value="Acceder"></button></td>
+            </tr>
+          </table>
+        </form>
+        <?php
+        //Validación del registro en el servidor
+        if (isset($_POST['botonLogin'])){
+            $correo = "";
+            $userpass = "";
 
-            $error = "";
-
-
-            if (isset($_POST['login'])){
-
-                $error = validacionser();
-                if($error==""){
-                    $mysql= mysqli_connect($server,$user,$pass,$basededatos) or die(mysqli_connect_error());
-
-                    $username=$_POST['email'];
-                    $pass=$_POST['password'];
-                    $usuarios = mysqli_query( $mysql,"select * from Usuarios where Email ='$username' AND Passwords='$pass'");
-                    $cont= mysqli_num_rows($usuarios); //Se verifica el total de filas devueltas
-                    $row = mysqli_fetch_array($usuarios);
-                    if($cont==1){
-                        $url= "?email=".$row['Email'];
-                        header("Location: Layout.php".$url);
-                        //echo ("Login correcto<p><a href=‘Layout.php'>Puede insertar preguntas</a>");
-                    } else {
-                        echo ("El email o la contraseña facilitados no son correctos");
-                    }
-                    mysqli_close( $mysql); //cierra la conexion
-                }else{
-                    echo '<script language="javascript">';
-                    echo "alert('" . $error . "')";
-                    echo '</script>';
-                }
-
-            }
-            /*
-            <?php $errores='';
-            if (isset ($_POST['email'])){
-                $errores = validarEmail();
-            }
-
-            //mostrar formulario
-
-            <span style:'color:red'> <?php echo ($errores)?> </span>
-
-            if ($errores!=''){
-                <scripts location.href = 'destino.php';
-            }
-            */
-
-            function validacionser(){
-                $username=$_POST['email'];
-                $pass=$_POST['password'];
-
-                if($username=="" || $username==null){
-                    return 'El campo de email no puede estar vacío';
-                }
-                if($pass=="" || $pass==null){
-                    return 'El campo de contraseña no puede estar vacío';
-                }
-            }
-
-            //Queda comprobar si el nombre y usuario existen en la base de datos para hacer login
+            $correo = $_POST['correo']; 
+            $userpass = $_POST['userpass'];
             
-    ?>
+            if($correo == ""){
+                echo "<h3>Debes introducir una dirección de correo.</h3>";
+                echo "<br>";
+                echo "<a href='LogIn.php'>";
+            }
+            else if($userpass == ""){
+                echo "<h3>Debes introducir una contraseña.</h3>";
+                echo "<br>";
+                echo "<a href='LogIn.php'>";
+            }
+            else{
+              //Si no ha habido ningún error, se INTENTA logear al usuario
+              //Conectamos con la base de datos mysql
+              include 'DbConfig.php';
+              $conn = mysqli_connect($server, $user, $pass, $basededatos);
+              $conn->set_charset("utf8");
+
+              if(!$conn){
+                die("Connection failed: " . mysqli_connect_error());
+              }
+              $sql = "SELECT * from users where correo = '$correo' and pass = '$userpass'";
+              $logear = mysqli_query($conn, $sql) or die(mysqli_error());
+              $row = mysqli_fetch_array($logear, MYSQLI_ASSOC) ; //Lo convertimos a array
+
+              if(is_null($row)){
+                echo "<h3>Datos de login incorrectos. :(</h3>";
+                echo "<br>";
+              }
+              else{
+                //Logear al usuario
+                //printf ("%s (%s)\n", $row["correo"], $row["pass"]);
+                if(($row['correo'] == $correo) && ($row['pass'] == $userpass)){
+                  echo '<script type="text/javascript"> alert("Bienvenido al Sistema: '. $correo .' ");
+                        window.location.href="Layout.php?correo='.$correo.'";
+                        </script>';
+                }
+                else{
+                  echo "<h3>Datos de login incorrectos. :(</h3>";
+                  echo "<br>";
+                }
+              } 
+          }
+        }
+        ?>
+    </div>
     </section>
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
     <?php include '../html/Footer.html' ?>
 </body>
-
-</html>
+</html> 

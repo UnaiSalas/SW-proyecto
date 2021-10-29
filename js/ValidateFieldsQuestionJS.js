@@ -1,48 +1,60 @@
 
-function validarform() {
-  return validar_vacios() && validar_email() && validar_long() && validar_dificultad();
-}
+function validacion() {
+    
+    var correo = document.fquestion.correo.value;
+    var enun = document.fquestion.enun.value;
+    var correct = document.fquestion.correct.value;
+    var inc1 = document.fquestion.inc1.value;
+    var inc2 = document.fquestion.inc2.value;
+    var inc3 = document.fquestion.inc3.value;
+    var dif = document.fquestion.dif.value
+    var tema = document.fquestion.tema.value;
 
-function validar_vacios() {
-
-    var email = document.getElementById("email").value;
-    var pregunta = document.getElementById("pregunta").value;
-    var right_answ = document.getElementById("right_answ").value;
-    var wrong_answ_1 = document.getElementById("wrong_answ_1").value;
-    var wrong_answ_2 = document.getElementById("wrong_answ_2").value;
-    var wrong_answ_3 = document.getElementById("wrong_answ_3").value;
-    var tema = document.getElementById("tema").value;
-
-    if ((email == "") || (pregunta == "") || (right_answ == "") || (wrong_answ_1 == "") || (wrong_answ_2 == "") || (wrong_answ_3 == "") || (tema == "")){
-      alert("Los campos obligatorios deben estar completos");
-      return false;
-    }else{
-      return true;
-    }
-  }
-
-function validar_email() {
-  var email = document.getElementById("email").value;
-  var expresion_email_alumno = /^[a-z]+[0-9][0-9][0-9]@ikasle\.ehu\.(eus|es)$/;
-  var expresion_email_profe = /^([a-z]+\.)?[a-z]+@ehu\.(eus|es)$/;
-
-  return (expresion_email_profe.test(email) || expresion_email_alumno.test(email));
-  
-}
-
-function validar_dificultad() {
-  var dificultad = document.getElementById("dificultad").value;
-  var valores = /^[123]$/;
-  return valores.test(dificultad);
-
-}
-
-function validar_long() {
-  var pregunta = document.getElementById("pregunta").value;
-  if(pregunta.length >= 10){
-    return true;
-  }else{
-    alert("La pregunta debe tener como mínimo 10 caracteres");
+    if( correo == '' || correo == null) {
+        alert( 'Debes introducir un correo electronico.');
     return false;
-  }
+    } else{
+        if(!validacionEmail(correo)){
+            alert('Debes introducir una dirección de correo válida.')
+            return false;
+        }
+    }
+    if( enun == '' || enun == null ) {
+        alert( 'Debes introducir una pregunta.' );
+        return false;
+    }
+    if( correct == '' || correct == null) {
+        alert( 'Debes introducir una respuesta correcta.' );
+        return false;
+    }
+    if( inc1 == '' || inc1 == null) {
+        alert( 'Debes introducir una respuesta incorrecta 1.' );
+        return false;
+    }
+    if( inc2 == '' || inc2 == null) {
+        alert( 'Debes introducir una respuesta incorrecta 2.' );
+        return false;
+    }
+    if( inc3 == ''  || inc3 == null) {
+        alert( 'Debes introducir una respuesta incorrecta 3.' );
+        return false;
+    }
+    if( dif == ''  || dif == null) {
+        alert( 'Debes elegir una complejidad.' );
+        return false;
+    }
+    if( tema == ''  || tema == null) {
+        alert( 'Debes especificar un tema.' );
+        return false;
+    }
+    return( true );
+}
+
+function validacionEmail(correo){
+    //Forma mas sencilla de validacion de email -> expresiones regulares.
+    const er = /^([a-zA-Z]+[0-9]{3})@ikasle\.ehu\.(eus|es)$/;
+    const er2 = /^[a-zA-Z]+\.[a-zA-Z]+@ehu\.(eus|es)$/;
+    const er3 = /^[a-zA-Z]+@ehu\.(eus|es)$/;
+    return er.test(String(correo).toLowerCase()) && er2.test(String(correo).toLowerCase()) && er3.test(String(correo).toLowerCase());
+
 }

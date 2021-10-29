@@ -1,145 +1,171 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <?php include '../html/Head.html' ?>
+  <?php include '../html/Head.html'?>
 </head>
-
 <body>
-    <?php include '../php/Menus.php' ?>
-    <section class="main" id="s1">
-        <div>
-            <form id='signup' name='signup' action='SignUp.php' method="POST" onsubmit="">
-                <label for="t_usuario">Tipo usuario*: </label>
-                <select name="t_usuario" id="t_usuario">
-                    <option value="Alumno">Alumno</option>
-                    <option value="Profesor">Profesor</option>
-                </select>
-                <br />
-                <label for="email">Email*: </label>
-                <input type="text" id="email" size="21" name="email" value="" />
-                <br />
-                <label for="Nombre">Nombre*: </label>
-                <input type="text" id="Nombre" size="21" name="Nombre" value="" />
-                <br />
-                <label for="Apellidos">Apellidos*: </label>
-                <input type="text" id="Apellidos" size="21" name="Apellidos" value="" />
-                <br />
-                <label for="Password">Password*: </label>
-                <input type="password" id="password" name="password" value="" />
-                <br />
-                <label for="RePassword">Repetir Password*: </label>
-                <input type="password" id="repassword" name="repassword" value="" />
-                <br />
-                <input type="submit" id="signup" name="signup" value="Enviar" />
-            </form>
-        </div>
-        <?php 
-            include 'DbConfig.php';
+  <?php include '../php/Menus.php' ?>
+  <section class="main" id="s1">
+    <div>
+        <style>
+          .imgPrev {
+            display: block;
+            width: auto;
+            height: 100%;
+          }
+        </style>
+        <form id="fregister" name="fregister" action="SignUp.php" enctype="multipart/form-data" method = "POST" actionstyle="width: 60%; margin: 0px auto;">
+          <table style="border:4px solid #c1e9f6;" bgcolor="#9cc4e8">
+            <caption style="text-align:left">
+              <h2>Registro de usuario</h2> 
+            </caption>
+            <tr>
+              <td align="right">Tipo de usuario: </td>
+              <td align="left">
+                <select name="user" id="user" form="fregister">
+                  <option value="alu">Alumno</option>
+                  <option value="prof">Profesor</option>
+                </select> 
+              </td>
+            </tr>
+            <tr>
+              <td align="right">Dirección de correo (*): </td>
+              <td align="left"><input type="text" id="correo" name="correo" autofocus></td>
+            </tr>
+            <tr>
+              <td align="right">Nombre (*): </td>
+              <td align="left"><input style="width: 600px;" type="text" id="nom" name="nom" autofocus></td>
+            </tr>
+            <tr>
+              <td align="right">Apellido/s (*): </td>
+              <td align="left"><input style="width: 600px;" type="text" id="apell" name="apell" autofocus></td>
+            </tr>
+            <tr>
+              <td align="right">Contraseña (*): </td>
+              <td align="left"><input style="width: 600px;" type="password" id="userpass" name="userpass" autofocus></td>
+            </tr>
+            <tr>
+              <td align="right">Repetir contraseña (*): </td>
+              <td align="left"><input style="width: 600px;" type="password" id="repass" name="repass" autofocus></td>
+            </tr>
+            <tr>
+              <td align="right">Foto de perfil: </td>
+              <td align="left"><input id="subirImagen" name="subirImagen" type="file" onchange="" accept="image/png, image/jpeg"></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td align ="left"><img id="preview" name="preview"  class="imgPreview" src="" height="200"></td>
+            </tr>
+            <tr>
+            <td></td>
+              <td align ="left"><button type="button" id="borrarImagen" name="borrarImagen">Borrar Imagen</button></td>    
+            </tr>
+            <tr>
+            <td></td>
+              <td align="left"><input type="submit" id="botonReg" name="botonReg" value="Registrarse"></button></td>
+            </tr>
+          </table>
+        </form>
+        <?php
+        //Validación del registro en el servidor
+        if (isset($_POST['botonReg'])){
+            $tipoUser = "";
+            $correo = "";
+            $nom = "";
+            $apell = "";
+            $pass = "";
+            $repass = "";
 
-            $error = "";
-
-
-            if (isset($_POST['signup'])){
-
-                $error = validacionser();
-                if($error==""){
-                    $mysql= mysqli_connect($server,$user,$pass,$basededatos) or die(mysqli_connect_error());
-
-                    $t_usuario=$_POST['t_usuario'];
-                    $Nombre =$_POST['Nombre'];
-                    $Apellidos =$_POST['Apellidos'];
-                    $username=$_POST['email'];
-                    $pass=$_POST['password'];
-                    $repass=$_POST['repassword'];
-                    $usuarios = mysqli_query( $mysql,"select * from Usuarios where Email ='$username'");
-                    $cont= mysqli_num_rows($usuarios); //Se verifica el total de filas devueltas
-                    if($cont==0){
-                        $sql="INSERT INTO Usuarios (TipoUsuario, Email, Nombre, Apellidos, Passwords) 
-                        VALUES ('$t_usuario','$username','$Nombre','$Apellidos','$pass')";
-                            if (mysqli_query($mysql, $sql)) {
-                                echo("<script> alert ('BIENVENIDO AL SISTEMA:". $username . "')</script>");
-                            } else {
-                                echo "<h2>Se ha producido un error. Intentelo de nuevo.</h2>";
-                                echo "</br>";
-                            }
-                        
-                        //echo ("Login correcto<p><a href=‘Layout.php'>Puede insertar preguntas</a>");
-                    } else {
-                        echo ("Este email ya está registrado");
-                    }
-                    mysqli_close( $mysql); //cierra la conexion
-                }else{
-                    echo '<script language="javascript">';
-                    echo "alert('" . $error . "')";
-                    echo '</script>';
-                }
-
+            //Validación en servidor 
+            $er = "/^([a-zA-Z]+[0-9]{3})@ikasle\.ehu\.(eus|es)$/";
+            $er2 = "/^[a-zA-Z]+\.[a-zA-Z]+@ehu\.(eus|es)$/";
+            $er3 = "/^[a-zA-Z]+@ehu\.(eus|es)$/";
+                
+            $tipoUser = $_POST['user'];
+            $correo = $_POST['correo']; 
+            $nom = $_POST['nom'];
+            $apell = $_POST['apell'];
+            $userpass = $_POST['userpass'];
+            $repass = $_POST['repass'];
+            $imagen_nombre = $_FILES['subirImagen']['name'];
+            $imagen_loc_tmp = $_FILES['subirImagen']['tmp_name']; //El directorio temporal donde está la imagen al subirla mediante el formulario.
+            $nombre_imagen_separado = explode(".", $imagen_nombre); //Separamos el nobmre de la imagen para obtener su extensión.
+            $imagen_extension = strtolower(end($nombre_imagen_separado)); //Cogemos la extensión.
+            $nuevo_nombre_imagen = md5(time() . $imagen_nombre) . '.' . $imagen_extension; //Se le da un nombre único a la imagen que se va a guardar en el servidor.
+            $imagen_dir = "../images/".$nuevo_nombre_imagen; //La base de datos guardará los directorios de las imagenes en el servidor.
+            
+            if($tipoUser == ""){
+                echo "<h3>Debes introducir una respuesta correcta.</h3>";
+                echo "<br>";
             }
-            /*
-            <?php $errores='';
-            if (isset ($_POST['email'])){
-                $errores = validarEmail();
+            else if($correo == ""){
+                echo "<h3>Debes introducir una dirección de correo.</h3>";
+                echo "<br>";
             }
-
-            //mostrar formulario
-
-            <span style:'color:red'> <?php echo ($errores)?> </span>
-
-            if ($errores!=''){
-                <scripts location.href = 'destino.php';
+            else if(!(preg_match($er, $correo) || preg_match($er2, $correo) || preg_match($er3, $correo))){
+                echo "<h3>Debes introducir una dirección de correo válida.</h3>";
+                echo "<br>";
             }
-            */
-
-
-            function validacionser(){
-                $t_usuario=$_POST['t_usuario'];
-                $Nombre =$_POST['Nombre'];
-                $Apellidos =$_POST['Apellidos'];
-                $username=$_POST['email'];
-                $pass=$_POST['password'];
-                $repass=$_POST['repassword'];
-
-                /*$palabrasN=explode(" ",$Nombre);
-                if(strlen($palabrasN[0]) < 2 ) {
-                    return '<p>El nombre no es válido<p>';
-                }
-                $palabrasA=explode(" ",$Apellidos);
-                if(strlen($palabrasA[0]) < 2 ){
-                    return '<p>Los apellidos no son válidos<p>';
-                }*/
-                $email_alumno = preg_match("/^[a-z]+[0-9][0-9][0-9]@ikasle\.ehu\.(eus|es)$/", $username);
-                $email_profe = preg_match("/^([a-z]+\.)?[a-z]+@ehu\.(eus|es)$/", $username);
-
-                if($username=="" || $username==null){
-                    return 'El campo de email no puede estar vacio';
-                }else if($t_usuario == "Alumno" && !$email_alumno){
-                    return 'El email no coincide con la estructura del email de alumno';
-                }else if($t_usuario == "Profesor" && !$email_profe){
-                    return 'El email no coincide con la estructura del email de profesor';
-                }
-                if($Nombre=="" || $Nombre==null){
-                    return 'El campo nombre no puede estar vacio';
-                }else if(strlen($Nombre) < 2){
-                    return 'El nombre no son validos';
-                }
-                if($Apellidos=="" || $Apellidos==null){
-                    return 'El campo apellidos no puede estar vacio';
-                }else if(strlen($Apellidos) < 2){
-                    return 'Los apellidos no son validos';
-                }
-                if($pass=="" || $pass == null || $repass=="" || $repass== null){
-                    return 'Los campos de contraseñas no pueden estar vacios';
-                } else if(strlen($pass) < 8) {
-                    return 'La contraseña tiene que tener al menos 8 caracteres';
-                } else if($pass != $repass){
-                    return 'Las contraseñas no son iguales';
-                }
-
+            else if($nom == ""){
+                echo "<h3>Debes introducir un nombre.</h3>";
+                echo "<br>";
+            }    
+            else if(strlen($nom) < 2){
+                echo "<h3>El nombre debe tener al menos dos caracteres.</h3>";
+                echo "<br>";
             }
+            else if($apell == ""){
+                echo "<h3>Debes introducir apellido/s.</h3>";
+                echo "<br>";
+            }    
+            else if(strlen($apell) < 2){
+                echo "<h3>El apellido debe tener al menos dos caracteres.</h3>";
+                echo "<br>";
+            }
+            else if($userpass == ""){
+                echo "<h3>Debes introducir una contraseña.</h3>";
+                echo "<br>";
+            }
+            else if(strlen($userpass) < 8){
+                echo "<h3>La contraseñad debe tener más de 8 caracteres.</h3>";
+                echo "<br>";
+            }
+            else if($repass != $userpass){
+                echo "<h3>Las contraseñas deben ser iguales.</h3>";
+                echo "<br>";
+            }
+            else{
+              //Si no ha habido ningún error, se registra al usuario
+              //Conectamos con la base de datos mysql
+              include 'DbConfig.php';
+              $conn = mysqli_connect($server, $user, $pass, $basededatos);
+              $conn->set_charset("utf8");
+
+              if(!$conn){
+                die("Connection failed: " . mysqli_connect_error());
+              }
+              $sql = "INSERT INTO users (tipouser, correo, nom, apell, pass, img) VALUES ('$tipoUser', '$correo', '$nom', '$apell', '$userpass', '$imagen_dir')";
+              $anadir = mysqli_query($conn, $sql);
+              if(!$anadir){
+                echo "<h3>Se ha producido un error al intentar registrar al usuario. :(</h3>";
+                echo "<br>";
+              }
+              else{
+                //Si se puede introducir el usuario, entonces guardamos la imagen en el directorio images.
+                move_uploaded_file($imagen_loc_tmp, $imagen_dir);     
+                mysqli_close($conn);  
+                echo '<script type="text/javascript"> alert("Se ha realizado el registro de forma correcta");
+                        window.location.href="LogIn.php";
+                        </script>';        
+              }
+            }
+        }
     ?>
+    </div>
     </section>
+    <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="../js/ShowImageInForm.js"></script>
+    <script type="text/javascript" src="../js/RemoveImageInForm.js"></script>
     <?php include '../html/Footer.html' ?>
 </body>
-
-</html>
+</html>  
