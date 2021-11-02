@@ -79,17 +79,17 @@
             </tr>
             <tr>
             <td></td>
-              <td align="left"><button type="button" id="botonPreg" name="botonPreg"">Enviar solicitud</button></td>
+              <td align="left"><button type="button" id="botonPreg" name="botonPreg" onClick="addQuestion()">Enviar solicitud</button></td>
             </tr>
             <td></td>
-              <td align="left"><button type="button" id="mostrarPreguntas" name="mostrarPreguntas"">Mostrar Preguntas</button></td>
+              <td align="left"><button type="button" id="mostrarPreguntas" name="mostrarPreguntas" onClick="showQuestions()">Mostrar Preguntas</button></td>
             </tr>
           </table>
         </form>
     </div>
     <!-- https://www.w3schools.com/php/php_ajax_xml.asp -->
     <!-- Mirar este video: https://www.youtube.com/watch?v=M4LaQ3KUGOM -->
-    <div id="mostrarPreguntas"><b>Aqui se mostrará la tabla de las preguntas...</b></div>
+    <div class="table table-bordered table-striped center " id="mostrar-Preguntas"><b>Aqui se mostrará la tabla de las preguntas...</b></div>
 
 
   </section>

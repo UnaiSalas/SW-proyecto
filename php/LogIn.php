@@ -63,7 +63,7 @@
                 die("Connection failed: " . mysqli_connect_error());
               }
               $sql = "SELECT * from users where correo = '$correo' and pass = '$userpass'";
-              $logear = mysqli_query($conn, $sql) or die(mysqli_error());
+              $logear = mysqli_query($conn, $sql) or die(mysqli_error($conn));
               $row = mysqli_fetch_array($logear, MYSQLI_ASSOC) ; //Lo convertimos a array
 
               if(is_null($row)){
