@@ -79,16 +79,29 @@
             </tr>
             <tr>
             <td></td>
-              <td align="left"><input type="submit" id="botonPreg" name="botonPreg" value="Enviar solicitud"></button></td>
+              <td align="left"><button type="button" id="botonPreg" name="botonPreg"">Enviar solicitud</button></td>
+            </tr>
+            <td></td>
+              <td align="left"><button type="button" id="mostrarPreguntas" name="mostrarPreguntas"">Mostrar Preguntas</button></td>
             </tr>
           </table>
         </form>
     </div>
+    <!-- https://www.w3schools.com/php/php_ajax_xml.asp -->
+    <!-- Mirar este video: https://www.youtube.com/watch?v=M4LaQ3KUGOM -->
+    <div id="mostrarPreguntas"><b>Aqui se mostrará la tabla de las preguntas...</b></div>
+
+
   </section>
   <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../js/ShowImageInForm.js"></script>
   <script type="text/javascript" src="../js/RemoveImageInForm.js"></script>
-  <!-- <script type="text/javascript" src="../js/ValidateFieldsQuestionJQ.js"></script> -->
+  <script type="text/javascript" src="../js/ValidateFieldsQuestionJQ.js"></script>
+
+  <!-- scripts del lab 6 -->
+  <script type="text/javascript" src="../js/AddQuestionsAjax.js"></script>
+  <script type="text/javascript" src="../js/ShowQuestionsAjax.js"></script>
+
   <?php include '../html/Footer.html' ?>
 </body>
 </html>
