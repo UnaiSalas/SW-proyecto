@@ -70,8 +70,8 @@
         $path = "../images/noimage.png";
       }*/
       $path = "../images/placeholder.png";
-      $query = "INSERT INTO Preguntas(correo, enunciado, resOK, resF1, resF2, resF3, tema, complejidad, imagen)
-              VALUES ('$correo', '$enun', '$correct', '$inc1', '$inc2', '$inc3', '$tema', '$compl', '$path')";
+      $query = "INSERT INTO Preguntas(correo, enun, correct, inc1, inc2, inc3, compl, tema, imagen)
+              VALUES ('$correo', '$enun', '$correct', '$inc1', '$inc2', '$inc3', '$compl', '$tema', '$path')";
 
       if(!mysqli_query($mysqli, $query)){
         return "<p id='msgBD' style='color:red;'>  Ha ocurrido un error inesperado </p> <br> <a href='QuestionFormWithImage.php".$urlBack."'> Volver a la pagina principal </a>";
