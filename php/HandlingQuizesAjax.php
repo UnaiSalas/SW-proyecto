@@ -75,14 +75,14 @@
             </tr>
             <tr>
             <td></td>
-              <td align ="left"><button type="button" id="borrarImagen" name="borrarImagen">Borrar Imagen</button></td>    
+              <td align ="left"><input type="button" id="borrarImagen" name="borrarImagen" value="Borrar Imagen"></td>    
             </tr>
             <tr>
             <td></td>
-              <td align="left"><button type="button" id="botonPreg" name="botonPreg" onClick="addQuestion()">Enviar solicitud</button></td>
+              <td align="left"><input type="button" id="botonPreg" name="botonPreg" value="Enviar solicitud" onClick="addQuestion()"></td>
             </tr>
             <td></td>
-              <td align="left"><button type="button" id="mostrarPreguntas" name="mostrarPreguntas" onClick="showQuestions()">Mostrar Preguntas</button></td>
+              <td align="left"><input type="button" id="mostrarPreguntas" name="mostrarPreguntas" value="Mostrar preguntas" onClick="showQuestions()"></td>
             </tr>
           </table>
         </form>
