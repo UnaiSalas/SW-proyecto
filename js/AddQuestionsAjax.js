@@ -17,4 +17,5 @@ function addQuestion(){
             console.log(xhr, resp, text);
         }
     });
+    ev.preventDefault();
 }
