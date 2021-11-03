@@ -25,9 +25,6 @@ $(document).ready(function() {
                 alert("Datos enviados correctamente");
                 showQuestions();
             },
-            error: function (data) {
-                alert("ERROR al añadir la pregunta");
-            }
         });
         //var xmlhttp = new XMLHttpRequest();
         //xmlhttp.open('POST','../php/AddQuestionWithImage.php',true);
