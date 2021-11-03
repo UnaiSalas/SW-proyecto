@@ -14,7 +14,7 @@
   <?php if(isset($_GET['correo'])){ ?>
   <span><a href="Layout.php?correo=<?php echo $_GET["correo"]; ?>"> Inicio</a></span>
   <span><a href="Credits.php?correo=<?php echo $_GET["correo"]; ?>">Creditos</a></span>
-  <span><a href="QuestionFormWithImage.php?correo=<?php echo $_GET["correo"]; ?>"> Insertar Pregunta </a></span>
+  <span><a href="HandlingQuizesAjax.php?correo=<?php echo $_GET["correo"]; ?>"> Insertar Pregunta </a></span>
   <span><a href="ShowQuestionsWithImage.php?correo=<?php echo $_GET["correo"]; ?>"> Ver Preguntas </a></span>
   <span><a href="ShowXMLQuestionsWithImage.php?correo=<?php echo $_GET["correo"]; ?>"> Ver Preguntas XML</a></span>
   <span><a href="ShowJsonQuestionsWithImage.php?correo=<?php echo $_GET["correo"]; ?>"> Ver Preguntas JSON</a></span>
