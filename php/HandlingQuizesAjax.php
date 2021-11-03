@@ -79,7 +79,7 @@
             </tr>
             <tr>
             <td></td>
-              <td align="left"><input type="button" id="botonPreg" name="botonPreg" value="Enviar solicitud" onClick="addQuestion() onClick="showQuestions()""></td>
+              <td align="left"><input type="button" id="botonPreg" name="botonPreg" value="Enviar solicitud" onClick="addQuestion();showQuestions()"></td>
             </tr>
             <td></td>
               <td align="left"><input type="button" id="mostrarPreguntas" name="mostrarPreguntas" value="Mostrar preguntas" onClick="showQuestions()"></td>
