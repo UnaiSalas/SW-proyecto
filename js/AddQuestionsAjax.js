@@ -11,6 +11,7 @@ function addQuestion(){
         },
         success: function(data){
             alert("Datos enviados correctamente");
+            showQuestions();
         },
         error: function(data){
             alert("ERROR al añadir la pregunta");
