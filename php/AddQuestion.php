@@ -44,12 +44,12 @@
         if(!$anadir){
           echo "<h3>Se ha producido un error al intentar insertar la pregunta en la base de datos. :(</h3>";
           echo "<br>";
-          echo "<a href="."QuestionFormWithImage.php".">VOLVER A INSERTAR PREGUNTA</a>";
+          echo "<a href="."HandlingQuizesAjax.php".">VOLVER A INSERTAR PREGUNTA</a>";
         }
         else{
           echo "<h3>Se ha introducido la pregunta en la base de datos. :)</h3>";
           echo "<br>";
-          echo "<a href="."ShowQuestions.php".">VISUALIZAR PREGUNTAS</a>";
+          //echo "<a href="."ShowQuestions.php".">VISUALIZAR PREGUNTAS</a>";
           mysqli_close($conn);
         }
       }	
