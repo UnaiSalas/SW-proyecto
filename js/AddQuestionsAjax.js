@@ -1,6 +1,6 @@
 function addQuestion(){
     $.ajax({
-        url: "../php/AddQuestion.php",
+        url: "../php/AddQuestionWithImage.php",
         dataType: "json",
         type: "post",
         data: $("#fquestion").serialize(),
