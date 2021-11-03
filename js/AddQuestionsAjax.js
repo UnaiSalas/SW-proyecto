@@ -28,12 +28,6 @@ $(document).ready(function() {
             error: function (data) {
                 alert("ERROR al añadir la pregunta");
             }
-        })
-        .done(function(resp) {
-            alert("Datos enviados correctamente 2");
-        })
-        .fail(function (resp) {
-            alert("ERROR");
         });
         //var xmlhttp = new XMLHttpRequest();
         //xmlhttp.open('POST','../php/AddQuestionWithImage.php',true);

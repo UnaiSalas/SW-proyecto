@@ -6,173 +6,154 @@
 <body>
   <?php include '../php/Menus.php' ?>
   <section class="main" id="s1">
-    <div>
-      <?php
-        $errorCount = 0;
+    <?php
+    $mensajeInsertarEnBD = insertarPreguntaBD();
+    $mensajeInsertarEnXML = insertarPreguntaXML();
+    $mensajeInsertrJSon = insertarJson();
 
-        //Inicializamos las variables que van a contener la información enviada por el formulario de login
-        $correo = ""; 
-        $enun = "";
-        $correct = "";
-        $inc1 = "";
-        $inc2 = "";
-        $inc3 = "";
-        $compl = "";
-        $tema = "";
-        //die(print_r($_POST,1));
+    echo($mensajeInsertarEnBD);
+    echo($mensajeInsertarEnXML);
+    echo($mensajeInsertrJSon);
 
-        if (isset($_POST['botonPreg'])){ //Si se ha pulsado el submit con nombre "botonPreg" se comienza a procesar el formulario
-
-          
-          $correo = $_POST['correo']; 
-          $enun = $_POST['enun'];
-          $correct = $_POST['correct'];
-          $inc1 = $_POST['inc1'];
-          $inc2 = $_POST['inc2'];
-          $inc3 = $_POST['inc3'];
-          $compl = $_POST['dif'];
-          $tema = $_POST['tema'];
-          $imagen_nombre = $_FILES['subirImagen']['name'];
-          $imagen_loc_tmp = $_FILES['subirImagen']['tmp_name']; //El directorio temporal donde está la imagen al subirla mediante el formulario.
-          $nombre_imagen_separado = explode(".", $imagen_nombre); //Separamos el nobmre de la imagen para obtener su extensión.
-          $imagen_extension = strtolower(end($nombre_imagen_separado)); //Cogemos la extensión.
-          $nuevo_nombre_imagen = md5(time() . $imagen_nombre) . '.' . $imagen_extension; //Se le da un nombre único a la imagen que se va a guardar en el servidor.
-          $imagen_dir = "../images/".$nuevo_nombre_imagen; //La base de datos guardará los directorios de las imagenes en el servidor.
-
-          //Validación en servidor 
-          $er = "/^([a-zA-Z]+[0-9]{3})@ikasle\.ehu\.(eus|es)$/";
-          $er2 = "/^[a-zA-Z]+\.[a-zA-Z]+@ehu\.(eus|es)$/";
-          $er3 = "/^[a-zA-Z]+@ehu\.(eus|es)$/";
-          if($correo == ""){
-            $errorCount += 1;
-            echo "<h3>Debes introducir una dirección de correo. :(</h3>";
-            echo "<br>";
-            echo '<a href="QuestionFormWithImage.php?correo='. $correo .'">VOLVER A INSERTAR PREGUNTA</a>';
-          }
-          else if(!(preg_match($er,$correo) || preg_match($er2,$correo) || preg_match($er3,$correo))){
-            $errorCount += 1;
-            echo "<h3>Debes introducir una dirección de correo válida. :(</h3>";
-            echo "<br>";
-            echo '<a href="QuestionFormWithImage.php?correo='. $correo .'">VOLVER A INSERTAR PREGUNTA</a>';
-          }
-          else if($enun == '') {
-            $errorCount += 1;
-            echo "<h3>Debes introducir una pregunta. :(</h3>";
-            echo "<br>";
-              echo '<a href="QuestionFormWithImage.php?correo='. $correo .'">VOLVER A INSERTAR PREGUNTA</a>';
-          }
-          else if(strlen($enun) < 10){
-              $errorCount += 1;
-              echo "<h3>La pregunta debe tener 10 caracteres como mínimo. :(</h3>";
-              echo "<br>";
-                echo '<a href="QuestionFormWithImage.php?correo='. $correo .'">VOLVER A INSERTAR PREGUNTA</a>';
-          }
-          else if($correct == '') {
-              $errorCount += 1;
-              echo "<h3>Debes introducir una respuesta correcta. :(</h3>";
-              echo "<br>";
-                echo '<a href="QuestionFormWithImage.php?correo='. $correo .'">VOLVER A INSERTAR PREGUNTA</a>';
-          }
-          else if($inc1 == '') {
-              $errorCount += 1;
-              echo "<h3>Debes introducir una respuesta incorrecta 1. :(</h3>";
-              echo "<br>";
-              echo "<a href="."QuestionFormWithImage.php?correo=  $correo ".">VOLVER A INSERTAR PREGUNTA</a>";
-          }
-          else if($inc2 == '') {
-              $errorCount += 1;
-              echo "<h3>Debes introducir una respuesta incorrecta 2. :(</h3>";
-              echo "<br>";
-              echo '<a href="QuestionFormWithImage.php?correo='. $correo .'">VOLVER A INSERTAR PREGUNTA</a>';
-          }
-          else if($inc3 == '') {
-              $errorCount += 1;
-              echo "<h3>Debes introducir una respuesta incorrecta 3. :(</h3>";
-              echo "<br>";
-              echo '<a href="QuestionFormWithImage.php?correo='. $correo .'">VOLVER A INSERTAR PREGUNTA</a>';
-          }
-          else if($compl == '') {
-            $errorCount += 1;
-            echo "<h3>Debes elegir una complejidad. :(</h3>";
-            echo "<br>";
-            echo '<a href="QuestionFormWithImage.php?correo='. $correo .'">VOLVER A INSERTAR PREGUNTA</a>';
-          }
-          else if($tema == '') {
-            $errorCount += 1;
-            echo "<h3>Debes especificar un tema. :(</h3>";
-            echo "<br>";
-            echo '<a href="QuestionFormWithImage.php?correo='. $correo .'">VOLVER A INSERTAR PREGUNTA</a>'; 
-          }
-          
-          if($errorCount == 0){ //Si no hay errores
-            /*Inserción en la base de datos.
-            Conectamos con la base de datos mysql*/
-            include 'DbConfig.php';
-            $conn = mysqli_connect($server, $user, $pass, $basededatos);
-            $conn->set_charset("utf8");
-
-            if(!$conn){
-              die("Connection failed: " . mysqli_connect_error());
-            }
-            $sql = "INSERT INTO preguntas (correo, enun, correct, inc1, inc2, inc3, compl, tema, imagen) VALUES ('$correo', '$enun', '$correct', '$inc1', '$inc2', '$inc3', '$compl', '$tema', '$imagen_dir')";
-            $anadir = mysqli_query($conn, $sql);
-            if(!$anadir){
-              echo "<h3>Se ha producido un error al intentar insertar la pregunta en la base de datos. :(</h3>";
-              echo "<br>";
-              echo '<a href="QuestionFormWithImage.php?correo='. $correo .'">VOLVER A INSERTAR PREGUNTA</a>';
-            }
-            else{
-              //Si se puede introducir la pregunta, entonces guardamos la imagen en el directorio images y la añadimos.
-              move_uploaded_file($imagen_loc_tmp, $imagen_dir);
-              echo "<h3>Se ha introducido la pregunta en la base de datos. :)</h3>";
-              echo "<br>";
-              //Inserción en XML.
-              $xml = simplexml_load_file("../xml/Questions.xml");
-              $pregunta = $xml->addChild('assesmentItem');
-              $pregunta->addAttribute('subject', $tema);
-              $pregunta->addAttribute('author', $correo);
-              $itembody = $pregunta->addChild('itemBody');
-              $itembody->addChild('p', $enun);
-              $correctresponse = $pregunta->addChild('correctResponse');
-              $correctresponse->addChild('response', $correct);
-              $incorrectresponse = $pregunta->addChild('incorrectResponses');
-              $incorrectresponse->addChild('response', $inc1);
-              $incorrectresponse->addChild('response', $inc2);
-              $incorrectresponse->addChild('response', $inc3);
-
-              $domxml = new DOMDocument('1.0');
-              $domxml->preserveWhiteSpace = false;
-              $domxml->formatOutput = true;
-              $domxml->loadXML($xml->asXML());
-              $domxml->save('../xml/Questions.xml');
-
-              echo "<h3>Se ha introducido la pregunta en el fichero XML. :)</h3>";
-              echo '<br>';
-
-              //Inserción en JSON
-              $json = file_get_contents('../json/Questions.json');
-              $tempArr = json_decode($json);
-              $arrayInc = array($inc1, $inc2, $inc3);
-              $pregunta = new stdClass();
-              $pregunta->subject=$tema;
-              $pregunta->author=$correo;
-              $pregunta->itemBody=array("p"=>$enun);
-              $pregunta->correctResponse=array("value"=>$correct);
-              $pregunta->incorrectResponses=array("value"=>$arrayInc);
-              $preguntaarray[0] = $pregunta;
-              array_push($tempArr->assessmentItems, $preguntaarray[0]);
-              $jsonData = json_encode($tempArr, JSON_PRETTY_PRINT);
-              file_put_contents("../json/Questions.json", $jsonData);
-              echo "<h3>Se ha introducido la pregunta en el fichero JSON. :)</h3>";
-
-              echo '<br>';
-              echo '<a href="ShowQuestionsWithImage.php?correo='.$correo.'">VISUALIZAR PREGUNTAS</a>';
-            }
-          }
-        }	
-      ?>
-    </div>
+    ?>
   </section>
   <?php include '../html/Footer.html' ?>
 </body>
 </html>
+<?php
+
+
+    function insertarPreguntaBD(){
+      include "DbConfig.php";
+
+
+      $correo = $_POST['correo']; 
+      $enun = $_POST['enun'];
+      $correct = $_POST['correct'];
+      $inc1 = $_POST['inc1'];
+      $inc2 = $_POST['inc2'];
+      $inc3 = $_POST['inc3'];
+      $compl = $_POST['dif'];
+      $tema = $_POST['tema'];
+      $urlBack = "?correo=".$correo;
+
+
+      // Validacion de tipo de usuario
+      $esAlumno = preg_match("/^[a-z]+\\d{3}@ikasle\.ehu\.(eus|es)$/", $correo);
+      $esProfesor = preg_match("/^([a-z]+\.)?[a-z]+@ehu\.(eus|es)$/", $correo);
+      if(!($esAlumno || $esProfesor)){
+        return "<p id='msgBD' style='color:red;'> El email no es valido </p> <br> <a href='QuestionFormWithImage.php".$urlBack."'> Volver a la pagina principal </a>";
+      }
+
+      //Validacion campos vacios
+      if($correo=="" || $enun=="" || $correct=="" || $inc1=="" || $inc2=="" || $inc3=="" || $tema==""){
+        return "<p id='msgBD' style='color:red;'> No puedes haber ningun campo vacio </p> <br> <a href='QuestionFormWithImage.php".$urlBack."'> Volver a la pagina principal </a>";
+      }
+
+
+      $mysqli = mysqli_connect($server, $user, $pass, $basededatos);
+
+      if (!$mysqli){
+        return "<p id='msgBD' style='color:red;'> Ha ocurrido un error inesperado </p> <br> <a href='QuestionFormWithImage.php".$urlBack."'> Volver a la pagina principal </a>";
+      }
+
+      /*if(!empty($_FILES['imagenPregunta']['tmp_name'])){
+
+        $path = "../images/preguntas/" . strtotime('now') . "_" . $_FILES['imagenPregunta']['name'];
+
+        if(!move_uploaded_file($_FILES['imagenPregunta']['tmp_name'], $path)) {
+          return "<p id='msgBD' style='color:red;'>Error al subir la imagen, porfavor introduzca la pregunta de nuevo </p> <br> <a href='QuestionFormWithImage.php".$urlBack."'> Insertar pregunta </a>";
+
+        }
+
+      }else{
+        $path = "../images/noimage.png";
+      }*/
+      $path = "../images/placeholder.png";
+      $query = "INSERT INTO Preguntas(correo, enunciado, resOK, resF1, resF2, resF3, tema, complejidad, imagen)
+              VALUES ('$correo', '$enun', '$correct', '$inc1', '$inc2', '$inc3', '$tema', '$compl', '$path')";
+
+      if(!mysqli_query($mysqli, $query)){
+        return "<p id='msgBD' style='color:red;'>  Ha ocurrido un error inesperado </p> <br> <a href='QuestionFormWithImage.php".$urlBack."'> Volver a la pagina principal </a>";
+      }
+
+      mysqli_close($mysqli);
+
+      return "<p id='msgBD'> La pregunta se guarda correctamente en la Base de Datos</p><br>";
+
+    }
+
+    function insertarPreguntaXML(){
+
+      $correo = $_POST['correo']; 
+      $enun = $_POST['enun'];
+      $correct = $_POST['correct'];
+      $inc1 = $_POST['inc1'];
+      $inc2 = $_POST['inc2'];
+      $inc3 = $_POST['inc3'];
+      $compl = $_POST['dif'];
+      $tema = $_POST['tema'];
+      $urlBack = "?correo=".$correo;
+
+      if($correo=="" || $enun=="" || $correct=="" || $inc1=="" || $inc2=="" || $inc3=="" || $tema==""){
+        return "<p id='msgXML' style='color:red;'> No puedes haber ningun campo vacio </p> ";;
+      }
+
+      /* cargar fichero Questions.xml y leerlo */
+      $questions_path = "../xml/Questions.xml";
+      if(!file_exists($questions_path)){
+        return "<p id='msgXML'style='color:red;'>Error: No se puede insertar en el xml </p> <br>";
+
+      }
+      $xml = simplexml_load_file($questions_path);
+
+      $new_assesment = $xml->addChild('assessmentItem');
+      $new_assesment -> addAttribute('subject', $tema);
+      $new_assesment -> addAttribute('author', $correo);
+      $nueva_pregunta = $new_assesment -> addChild('itemBody');
+      $nueva_pregunta -> addChild('p', $enun);
+      $correct_response = $new_assesment -> addChild('correctResponse');
+      $correct_response -> addChild('response', $correct);
+      $respuestas_incorrectas = $new_assesment -> addChild('incorrectResponses');
+      $respuestas_incorrectas -> addChild('response', $inc1);
+      $respuestas_incorrectas -> addChild('response', $inc2);
+      $respuestas_incorrectas -> addChild('response', $inc3);
+
+      $xml->asXML('../xml/Questions.xml');
+
+      return "<p id='msgXML'> La pregunta se ha guardado correctamente en el fichero XML  </p> <br>";
+
+
+    }
+
+    function insertarJson(){
+
+      $correo = $_POST['correo']; 
+      $enun = $_POST['enun'];
+      $correct = $_POST['correct'];
+      $inc1 = $_POST['inc1'];
+      $inc2 = $_POST['inc2'];
+      $inc3 = $_POST['inc3'];
+      $compl = $_POST['dif'];
+      $tema = $_POST['tema'];
+      $urlBack = "?correo=".$correo;
+
+
+      $json = file_get_contents('../json/Questions.json');
+      $tempArr = json_decode($json);
+      $arrayInc = array($inc1, $inc2, $inc3);
+      $pregunta = new stdClass();
+      $pregunta->subject=$tema;
+      $pregunta->author=$correo;
+      $pregunta->itemBody=array("p"=>$enun);
+      $pregunta->correctResponse=array("value"=>$correct);
+      $pregunta->incorrectResponses=array("value"=>$arrayInc);
+      $preguntaarray[0] = $pregunta;
+      array_push($tempArr->assessmentItems, $preguntaarray[0]);
+      $jsonData = json_encode($tempArr, JSON_PRETTY_PRINT);
+      file_put_contents("../json/Questions.json", $jsonData);
+
+    }
+
+
+?>

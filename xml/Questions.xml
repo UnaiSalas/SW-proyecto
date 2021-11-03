@@ -27,4 +27,4 @@
       <response>4</response>
     </incorrectResponses>
   </assesmentItem>
-</assessmentItems>
+<assessmentItem subject="1" author="usalas001@ikasle.ehu.eus"><itemBody><p>La pregunta es esta</p></itemBody><correctResponse><response>1</response></correctResponse><incorrectResponses><response>1</response><response>1</response><response>1</response></incorrectResponses></assessmentItem><assessmentItem subject="q" author="usalas001@ikasle.ehu.eus"><itemBody><p>La pregunta es esta</p></itemBody><correctResponse><response>1</response></correctResponse><incorrectResponses><response>2</response><response>3</response><response>4</response></incorrectResponses></assessmentItem><assessmentItem subject="q" author="usalas001@ikasle.ehu.eus"><itemBody><p>La pregunta es esta</p></itemBody><correctResponse><response>1</response></correctResponse><incorrectResponses><response>2</response><response>3</response><response>1</response></incorrectResponses></assessmentItem></assessmentItems>
