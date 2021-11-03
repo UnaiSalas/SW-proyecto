@@ -12,8 +12,9 @@ function addQuestion(){
         success: function(data){
             alert("Datos enviados correctamente");
         },
-        error: function(data){
+        error: function(xhr, resp, text){
             alert("ERROR al añadir la pregunta");
+            console.log(xhr, resp, text);
         }
     });
 }
