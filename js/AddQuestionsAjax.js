@@ -1,20 +1,35 @@
-function addQuestion(){
-    $.ajax({
-        url: "../php/AddQuestionWithImage.php",
-        dataType: "json",
-        type: "post",
-        data: $("#fquestion").serialize(),
-        contentType: 'application/json;charset=UTF-8',
-        cache: false,
-        beforeSend: function(){
-            $('#content').html('<div><img src="loading.gif"/></div>');
-        },
-        success: function(data){
-            alert("Datos enviados correctamente");
-        },
-        error: function(xhr, resp, text){
-            alert("ERROR al añadir la pregunta");
-            console.log(xhr, resp, text);
-        }
+$(document).ready(function() {
+    $("#botonPreg").click(function(){
+
+        var formData = new FormData(fquestion);
+
+        formData.append("correo", document.getElementById("correo").value);
+        formData.append("enun", document.getElementById("enun").value);
+        formData.append("correct", document.getElementById("correct").value);
+        formData.append("inc1", document.getElementById("inc1").value);
+        formData.append("inc2", document.getElementById("inc2").value);
+        formData.append("inc3", document.getElementById("inc3").value);
+        formData.append("dif", document.getElementById("dif").value);
+        formData.append("tema", document.getElementById("tema").value);
+        formData.append("inc1", document.getElementById("inc1").value);
+        formData.append("subirImagen", document.getElementById("subirImagen").files[0]);
+        $.ajax({
+            type: "POST",
+            data: formData,
+            cache: false,
+            url: "../php/AddQuestionWithImage.php",
+            contentType: false,
+            processData: false,
+            success: function (data) {
+                alert("Datos enviados correctamente");
+                showQuestions();
+            },
+            error: function (data) {
+                alert("ERROR al añadir la pregunta");
+            }
+        });
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.open('POST','../php/AddQuestionWithImage.php',true);
+        xmlhttp.send(formData);
     });
-}
+});

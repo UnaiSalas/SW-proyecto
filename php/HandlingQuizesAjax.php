@@ -89,14 +89,14 @@
     </div>
     <!-- https://www.w3schools.com/php/php_ajax_xml.asp -->
     <!-- Mirar este video: https://www.youtube.com/watch?v=M4LaQ3KUGOM -->
-    <div class="table table-bordered table-striped center " id="mostrar-Preguntas"><b><td align="left">Aqui se mostrará la tabla de las preguntas...</b></div>
+    <div class="table table-bordered table-striped center " id="mostrar-Preguntas"><b>Aqui se mostrará la tabla de las preguntas...</b></div>
 
 
   </section>
   <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
   <script type="text/javascript" src="../js/ShowImageInForm.js"></script>
   <script type="text/javascript" src="../js/RemoveImageInForm.js"></script>
-  <script type="text/javascript" src="../js/ValidateFieldsQuestionJQ.js"></script>
+  <!--<script type="text/javascript" src="../js/ValidateFieldsQuestionJQ.js"></script> -->
 
   <!-- scripts del lab 6 -->
   <script type="text/javascript" src="../js/AddQuestionsAjax.js"></script>
