@@ -30,7 +30,7 @@
             </tr>
             <tr>
               <td align="right">Dirección de correo (*): </td>
-              <td align="left"><input type="text" id="correo" name="correo" autofocus></td>
+              <td align="left"><input type="text" id="correo" name="correo" onfocusout="comprobarCorreo()"></td>
             </tr>
             <tr>
               <td align="right">Nombre (*): </td>
@@ -161,6 +161,33 @@
             }
         }
     ?>
+
+
+        <!-- Lab 7 -->
+        <?php
+          $correo = $_POST['correo'];
+          //instanciamos el objeto SoapClient con el WSDL del servicio
+          $soapclient = new SoapClient('http://ehusw.es/jav/ServiciosWeb/comprobarmatricula.php?wsdl');
+
+          //Llamamos a la funcion que habiamos implementado en el Web Service
+          //y devolvemos el resultado
+          if (isset($_POST['botonReg'])){
+            echo '<h3> El correo ' . $correo . $soapclient->comprobar($correo) . ' existe </h3>';
+          }
+        ?>
+        <script>
+          var correo = document.fregister.correo.value;
+          function comprobarCorreo(){
+              if ($soapclient->comprobar(correo) == "SI"){
+                document.getElementById("correo").style.backgroundColor = "green";
+              } else {
+                document.getElementById("correo").style.backgroundColor = "red";
+              }
+          }
+        </script>
+
+
+
     </div>
     </section>
     <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
