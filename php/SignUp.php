@@ -30,7 +30,7 @@
             </tr>
             <tr>
               <td align="right">Dirección de correo (*): </td>
-              <td align="left"><input type="text" id="correo" name="correo" onfocusout="comprobarCorreo()"></td>
+              <td align="left"><input type="text" id="correo" name="correo" onfocusout="comprobarCorreo()" onfocusin="probaronfocus()"></td>
             </tr>
             <tr>
               <td align="right">Nombre (*): </td>
@@ -183,6 +183,10 @@
               } else {
                 document.getElementById("correo").style.backgroundColor = "red";
               }
+          }
+
+          function probaronfocus(){
+            document.getElementById("correo").style.backgroundColor = "yellow";
           }
         </script>
 
