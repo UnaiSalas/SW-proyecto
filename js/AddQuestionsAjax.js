@@ -3,6 +3,8 @@
 
         var formData = new FormData(fquestion);
 
+        var mensaje = "ERROR: No se ha podido añadir la pregunta";
+
         formData.append("correo", document.getElementById("correo").value);
         formData.append("enun", document.getElementById("enun").value);
         formData.append("correct", document.getElementById("correct").value);
@@ -24,8 +26,11 @@
             success: function (data) {
                 alert("Datos enviados correctamente");
                 showQuestions();
+                mensaje = "Pregunta añadida correctamente";
             },
+            alert(mensaje);
         });
+        alert(mensaje);
         //var xmlhttp = new XMLHttpRequest();
         //xmlhttp.open('POST','../php/AddQuestionWithImage.php',true);
         //xmlhttp.send(formData);
