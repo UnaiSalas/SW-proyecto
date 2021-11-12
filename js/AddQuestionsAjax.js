@@ -1,4 +1,4 @@
-$(document).ready(function() {
+//$(document).ready(function() {
     $("#botonPreg").click(function(){
 
         var formData = new FormData(fquestion);
@@ -30,4 +30,4 @@ $(document).ready(function() {
         //xmlhttp.open('POST','../php/AddQuestionWithImage.php',true);
         //xmlhttp.send(formData);
     });
-});
+//});
