@@ -176,7 +176,10 @@
           }
         ?>
         <script>
-          var correo = document.fregister.correo.value;
+          var x = document.getElementById("fregister");
+          x.addEventListener("focus", comprobarCorreo, true);
+          //var correo = document.fregister.correo.value;
+          $soapclient = new SoapClient('http://ehusw.es/jav/ServiciosWeb/comprobarmatricula.php?wsdl');
           function comprobarCorreo(){
               if ($soapclient->comprobar(correo) == "SI"){
                 document.getElementById("correo").style.backgroundColor = "green";
