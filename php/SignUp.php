@@ -30,7 +30,7 @@
             </tr>
             <tr>
               <td align="right">Dirección de correo (*): </td>
-              <td align="left"><input type="text" id="correo" name="correo" onfocusout="comprobarCorreo()" onfocusin="probaronfocus()"></td>
+              <td align="left"><input type="text" id="correo" name="correo"></td>
             </tr>
             <tr>
               <td align="right">Nombre (*): </td>
@@ -176,21 +176,21 @@
           }
         ?>
         <script>
+          var soapclient = new SoapClient('http://ehusw.es/jav/ServiciosWeb/comprobarmatricula.php?wsdl');
           var x = document.getElementById("fregister");
-          x.addEventListener("focus", comprobarCorreo, true);
+          x.addEventListener("blur", comprobarCorreo, true);
           //var correo = document.fregister.correo.value;
-          $soapclient = new SoapClient('http://ehusw.es/jav/ServiciosWeb/comprobarmatricula.php?wsdl');
           function comprobarCorreo(){
-              if ($soapclient->comprobar(correo) == "SI"){
+              if (soapclient->comprobar(correo) == "SI"){
                 document.getElementById("correo").style.backgroundColor = "green";
               } else {
                 document.getElementById("correo").style.backgroundColor = "red";
               }
           }
 
-          function probaronfocus(){
-            document.getElementById("correo").style.backgroundColor = "yellow";
-          }
+          //function probaronfocus(){
+          //  document.getElementById("correo").style.backgroundColor = "yellow";
+          //}
         </script>
 
 
