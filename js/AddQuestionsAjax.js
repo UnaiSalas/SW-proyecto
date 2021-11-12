@@ -1,5 +1,6 @@
 //$(document).ready(function() {
-    $("#botonPreg").click(function(){
+    //$("#botonPreg").click(function(){
+    function addQuestion(){
 
         var formData = new FormData(fquestion);
 
@@ -34,5 +35,6 @@
         //var xmlhttp = new XMLHttpRequest();
         //xmlhttp.open('POST','../php/AddQuestionWithImage.php',true);
         //xmlhttp.send(formData);
-    });
+    }
+    //});
 //});
