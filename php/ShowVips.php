@@ -41,7 +41,7 @@
 
 
         //Cogemos los datos de la tabla
-        $resul = mysqli_query($conn, "SELECT * from vips");
+        $result = mysqli_query($conn, "SELECT * from vips");
 
         echo "<table " . " bgcolor=" . "'#9cc4e8'" . ">";
         echo "<tr>
