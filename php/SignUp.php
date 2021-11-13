@@ -162,16 +162,16 @@
         }
         ?>
         <script>
+          alert("Entra");
           var x = document.getElementById("fregister");
           x.addEventListener("focusout", comprobarCorreo);
           function comprobarCorreo(){
-            document.getElementById("correo").style.backgroundColor = "red";
             var soapclient = new SoapClient("http://ehusw.es/jav/ServiciosWeb/comprobarmatricula.php?wsdl");
             var existe = soapclient->comprobar(document.getElementById("correo").value);
               if (existe == "SI"){
-                document.getElementById("correo").style.backgroundColor = "green";
+                alert("El correo SI existe");
               } else {
-                document.getElementById("correo").style.backgroundColor = "red";
+                alert("El correo NO existe");
               }
           }
         </script>
