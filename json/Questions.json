@@ -33,6 +33,23 @@
                     "HTML"
                 ]
             }
+        },
+        {
+            "subject": "",
+            "author": "paca001@ikasle.ehu.eus",
+            "itemBody": {
+                "p": ""
+            },
+            "correctResponse": {
+                "value": ""
+            },
+            "incorrectResponses": {
+                "value": [
+                    "",
+                    "",
+                    ""
+                ]
+            }
         }
     ]
 }

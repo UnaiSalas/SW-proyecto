@@ -30,7 +30,7 @@
             </tr>
             <tr>
               <td align="right">Dirección de correo (*): </td>
-              <td align="left"><input type="text" id="correo" name="correo" onfocusout="blurFunction()"></td>
+              <td align="left"><input type="text" id="correo" name="correo" onfocusout="Verify()"></td>
             </tr>
             <tr>
               <td align="right">Nombre (*): </td>
@@ -162,7 +162,7 @@
         }
         ?>
         <script>
-          alert("Entra");
+          /*alert("Entra");
           var x = document.getElementById("fregister");
           x.addEventListener("focusout", comprobarCorreo);
           function comprobarCorreo(){
@@ -173,7 +173,7 @@
               } else {
                 alert("El correo NO existe");
               }
-          }
+          }*/
         </script>
 
         <!-- Lab 7 -->
@@ -200,7 +200,12 @@
 
 
     </div>
+
+    <div align="left" id="verificacion">
+
+    </div>
     </section>
+    <script src="../js/VerifyEnrollment.js"></script>
     <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
     <script type="text/javascript" src="../js/ShowImageInForm.js"></script>
     <script type="text/javascript" src="../js/RemoveImageInForm.js"></script>
