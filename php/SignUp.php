@@ -30,7 +30,7 @@
             </tr>
             <tr>
               <td align="right">Dirección de correo (*): </td>
-              <td align="left"><input type="text" id="correo" name="correo"></td>
+              <td align="left"><input type="text" id="correo" name="correo" onfocusout="blurFunction()"></td>
             </tr>
             <tr>
               <td align="right">Nombre (*): </td>
@@ -160,11 +160,25 @@
               }
             }
         }
-    ?>
-
+        ?>
+        <script>
+          var x = document.getElementById("fregister");
+          x.addEventListener("focusout", comprobarCorreo);
+          function comprobarCorreo(){
+            document.getElementById("correo").style.backgroundColor = "red";
+            var soapclient = new SoapClient("http://ehusw.es/jav/ServiciosWeb/comprobarmatricula.php?wsdl");
+            var existe = soapclient->comprobar(document.getElementById("correo").value);
+              if (existe == "SI"){
+                document.getElementById("correo").style.backgroundColor = "green";
+              } else {
+                document.getElementById("correo").style.backgroundColor = "red";
+              }
+          }
+        </script>
 
         <!-- Lab 7 -->
         <?php
+        /*
           $correo = $_POST['correo'];
           //instanciamos el objeto SoapClient con el WSDL del servicio
           $soapclient = new SoapClient('http://ehusw.es/jav/ServiciosWeb/comprobarmatricula.php?wsdl');
@@ -174,24 +188,14 @@
           if (isset($_POST['botonReg'])){
             echo '<h3> El correo ' . $correo . $soapclient->comprobar($correo) . ' existe </h3>';
           }
+          */
         ?>
         <script>
-          var soapclient = new SoapClient('http://ehusw.es/jav/ServiciosWeb/comprobarmatricula.php?wsdl');
-          var x = document.getElementById("fregister");
-          x.addEventListener("blur", comprobarCorreo, true);
-          //var correo = document.fregister.correo.value;
-          function comprobarCorreo(){
-              if (soapclient->comprobar(correo) == "SI"){
-                document.getElementById("correo").style.backgroundColor = "green";
-              } else {
-                document.getElementById("correo").style.backgroundColor = "red";
-              }
+          function blurFunction(){
+            document.getElementById("correo").style.backgound = "red";
           }
-
-          //function probaronfocus(){
-          //  document.getElementById("correo").style.backgroundColor = "yellow";
-          //}
         </script>
+        
 
 
 
