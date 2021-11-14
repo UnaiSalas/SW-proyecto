@@ -31,18 +31,22 @@
       </style>
       
         <h1>Cliente REST para saber si el usuario es VIP</h1><br>
-        <form id="fisVip" name="fisVip" method="POST" action="IsVip.php?id=<?php echo $_GET["id"]; ?>">
+        <form id="fisVip" name="fisVip" method="GET">
           <input type="text" id="id" name="id">
-          <input type="submit" id="esVIP" name="esVIP" value="Es VIP?">
+          <input type="submit" id="esVIP" name="esVIP" value="Es VIP?" onclick="curl()">
         </form>
-        <?php
-          $culr = curl_init();
-          $url = "https://sw.ikasten.io/~G24/LabWebServices/php/VipUsers.php?id=" . "vadillo@ehu.eus";
-          curl_setopt($culr, CURLOPT_URL, $url);
-          curl_setopt($culr, CURLOPT_RETURNTRANSFER, 1);
-          $str = curl_exec($culr);
-          echo $str;
-        ?>
+        <script>
+          function curl(){
+            <?php
+              $culr = curl_init();
+              $url = "https://sw.ikasten.io/~G24/LabWebServices/php/VipUsers.php?id=" . $_GET["id"];
+              curl_setopt($culr, CURLOPT_URL, $url);
+              curl_setopt($culr, CURLOPT_RETURNTRANSFER, 1);
+              $str = curl_exec($culr);
+              echo $str;
+            ?>
+          }
+        </script>
 
     </div>
   </section>
