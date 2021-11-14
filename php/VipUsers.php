@@ -62,8 +62,7 @@ $resource = $_SERVER['REQUEST_URI'];
             // Este no hay que implementar
         case 'DELETE':
             // Borrado de usuario VIP
-            $arguments = $_REQUEST;
-            $id = $arguments['id'];
+            $id = $_GET['id'];
             $sql = "DELETE FROM vips WHERE email='$id'";
             $result = Database::EjecutarNoConsulta($cnx, $sql);
             if ($result == 0){
