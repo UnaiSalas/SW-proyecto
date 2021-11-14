@@ -40,6 +40,7 @@
             <?php
               $culr = curl_init();
               $url = "https://sw.ikasten.io/~G24/LabWebServices/php/VipUsers.php?id=" . $_GET["id"];
+              echo $_GET["id"];
               curl_setopt($culr, CURLOPT_URL, $url);
               curl_setopt($culr, CURLOPT_RETURNTRANSFER, 1);
               $str = curl_exec($culr);
