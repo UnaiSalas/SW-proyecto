@@ -2,7 +2,7 @@
 // Constantes para el acceso a datos...
 //phpinfo();
 DEFINE("_HOST_", "localhost");
-DEFINE("_PORT_", "443");
+DEFINE("_PORT_", "3306");
 DEFINE("_USERNAME_", "G24");
 DEFINE("_DATABASE_", "db_G24");
 DEFINE("_PASSWORD_", "oqpjFF3vQ7Gbp");
