@@ -31,7 +31,7 @@
       </style>
       
         <h1>Cliente REST para saber si el usuario es VIP</h1><br>
-        <form id="fvip" name="fvip" method="GET" action="ShowVips.php?correo=<?php echo $_GET["correo"]; ?>">
+        <form id="fvip" name="fvip" method="GET">
             <input type="text" id="correo" name="correo">
             <input type="submit" id="esVIP" name="esVIP" value="Es VIP?">
             <?php
