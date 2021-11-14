@@ -31,19 +31,23 @@
       </style>
       
         <h1>Cliente REST para incluir un email a la lista de usuarios VIP</h1><br>
-        <input type="text" id="id" name="id">
-        <input type="button" id="addVip" name="addVip" value="Convertir a VIP"></button>
+        <form id="faddVip" name="faddVip" method="POST">
+          <input type="text" id="id" name="id">
+          <input type="submit" id="addVIP" name="addVIP" value="Convertir a VIP">
+        </form>
         <?php
+          if (isset($_POST['addVIP'])){
             $ch = curl_init();
-            $url = "https://sw.ikasten.io/~G24/LabWebServices/php/VipUsers.php?id=mmorillo005@ikasle.ehu.eus";
+            $url = "https://sw.ikasten.io/~G24/LabWebServices/php/VipUsers.php?id=" . $_POST['id'];
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_POST, true);
-            $data = array('id' => $id);
+            $data = array('id' => $_POST['id']);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
             $output = curl_exec($ch);
             echo $output;
             curl_close($ch);
+          }
         ?>
 
 

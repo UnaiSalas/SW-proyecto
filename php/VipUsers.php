@@ -46,10 +46,10 @@ $resource = $_SERVER['REQUEST_URI'];
 
         case 'POST':
             // Para añadir VIPS
-            $arguments = $_POST;
             $result = 0;
-            $id = $arguments['id'];
-            $sql = "INSERT INTO vips (email) VALUES ('$id');";
+            $id = $_GET['id'];
+            echo "id = " . $id;
+            $sql = "INSERT INTO vips (email) VALUES ('$id')";
             $num=Database::EjecutarNoConsulta($cnx, $sql);
             if ($num==0){
                 echo "Ya está en la BD";
@@ -62,8 +62,7 @@ $resource = $_SERVER['REQUEST_URI'];
             // Este no hay que implementar
         case 'DELETE':
             // Borrado de usuario VIP
-            $arguments = $_REQUEST;
-            $id = $arguments['id'];
+            $id = $_GET['id'];
             $sql = "DELETE FROM vips WHERE email='$id'";
             $result = Database::EjecutarNoConsulta($cnx, $sql);
             if ($result == 0){
