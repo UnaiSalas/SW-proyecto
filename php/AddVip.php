@@ -31,7 +31,7 @@
       </style>
       
         <h1>Cliente REST para incluir un email a la lista de usuarios VIP</h1><br>
-        <form id="fisVip" name="fisVip" method="POST">
+        <form id="faddVip" name="faddVip" method="POST">
           <input type="text" id="id" name="id">
           <input type="button" id="addVIP" name="addVIP" value="Convertir a VIP"></button>
         </form>
