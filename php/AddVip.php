@@ -38,7 +38,7 @@
         <?php
           if (isset($_POST['addVIP'])){
             $ch = curl_init();
-            $url = "https://sw.ikasten.io/~G24/LabWebServices/php/VipUsers.php?id" . $_POST['id'];
+            $url = "https://sw.ikasten.io/~G24/LabWebServices/php/VipUsers.php";
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_POST, true);
