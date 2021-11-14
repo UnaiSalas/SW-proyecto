@@ -48,9 +48,9 @@ $resource = $_SERVER['REQUEST_URI'];
             // Para añadir VIPS
             $result = 0;
             $id = $_POST['id'];
+            echo "id = " . $id;
             $sql = "INSERT INTO vips (email) VALUES ('$id');";
             $num=Database::EjecutarNoConsulta($cnx, $sql);
-            echo $num;
             if ($num==0){
                 echo "Ya está en la BD";
             } else {
