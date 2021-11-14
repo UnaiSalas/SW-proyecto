@@ -36,12 +36,17 @@
           <input type="submit" id="esVIP" name="esVIP" value="Es VIP?">
         </form>
         <?php
-          $culr = curl_init();
-          $url = "https://sw.ikasten.io/~G24/LabWebServices/php/VipUsers.php?id=" . $_GET["id"];
-          curl_setopt($culr, CURLOPT_URL, $url);
-          curl_setopt($culr, CURLOPT_RETURNTRANSFER, 1);
-          $str = curl_exec($culr);
-          echo $str;
+          if (isset($_POST['esVIP'])){
+            $culr = curl_init();
+            $url = "https://sw.ikasten.io/~G24/LabWebServices/php/VipUsers.php?id=" . $_POST['id'];
+            curl_setopt($culr, CURLOPT_URL, $url);
+            curl_setopt($culr, CURLOPT_RETURNTRANSFER, 1);
+            $str = curl_exec($culr);
+            echo $str;
+            echo '<script type="text/javascript">
+                    window.location.href="IsVip.php?id='.$_POST['id'].'";
+                  </script>';
+          }
         ?>
 
     </div>

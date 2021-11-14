@@ -35,7 +35,7 @@
         <input type="button" id="addVip" name="addVip" value="Convertir a VIP"></button>
         <?php
             $ch = curl_init();
-            $url = "https://sw.ikasten.io/~G24/LabWebServices/php/VipUsers.php?id=mmorillo005@ikasle.ehu.eus";
+            $url = "https://sw.ikasten.io/~G24/LabWebServices/php/VipUsers.php?id";
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_POST, true);
