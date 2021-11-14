@@ -52,7 +52,7 @@
 
           echo
           "<tr>
-          <td>" . $row['correo'] . "</td></tr>";
+          <td>" . $row['email'] . "</td></tr>";
 
         }
         echo "</table>";
