@@ -43,6 +43,7 @@ $resource = $_SERVER['REQUEST_URI'];
                 echo "</table>";
 			}
 			break;
+
         case 'POST':
             // Para añadir VIPS
             $arguments = $_POST;
@@ -61,6 +62,17 @@ $resource = $_SERVER['REQUEST_URI'];
             // Este no hay que implementar
         case 'DELETE':
             // Borrado de usuario VIP
+            $arguments = $_REQUEST;
+            $id = $arguments['id'];
+            $sql = "DELETE FROM vips WHERE email='$id'";
+            $result = Database::EjecutarNoConsulta($cnx, $sql);
+            if ($result == 0){
+                echo "No existe el correo ".$id;
+            } else {
+                echo json_encode(array('Deleted row' => $id));
+            }
+            break;
+
 			}
     Database::Desconectar($cnx);
 
