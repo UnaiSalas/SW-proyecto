@@ -36,12 +36,14 @@
           <input type="button" id="esVIP" name="esVIP" value="Es VIP?"></button>
       </form>
         <?php
-            $culr = curl_init();
-            $url = "https://sw.ikasten.io/~G24/LabWebServices/php/VipUsers.php?id=" . $id;
-            curl_setopt($culr, CURLOPT_URL, $url);
-            curl_setopt($culr, CURLOPT_RETURNTRANSFER, 1);
-            $str = curl_exec($culr);
-            echo $str;
+          if (isset($_GET['esVIP'])){
+              $culr = curl_init();
+              $url = "https://sw.ikasten.io/~G24/LabWebServices/php/VipUsers.php?id=" . $$_GET['id'];
+              curl_setopt($culr, CURLOPT_URL, $url);
+              curl_setopt($culr, CURLOPT_RETURNTRANSFER, 1);
+              $str = curl_exec($culr);
+              echo $str;
+          }
         ?>
 
     </div>
