@@ -50,7 +50,7 @@ $resource = $_SERVER['REQUEST_URI'];
             $result = 0;
             $id = $arguments['id'];
             $sql = "INSERT INTO vips (email) VALUES ('$id');";
-            $num=Database::EjecitarNoConsulta($cnx, $sql);
+            $num=Database::EjecutarNoConsulta($cnx, $sql);
             if ($num==0){
                 echo "Ya está en la BD";
             } else {
