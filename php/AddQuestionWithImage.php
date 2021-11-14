@@ -15,6 +15,15 @@
     echo($mensajeInsertarEnXML);
     echo($mensajeInsertrJSon);
 
+   // if($mensajeInsertarEnBD == "" || $mensajeInsertarEnBD == null || $mensajeInsertarEnXML == "" || $mensajeInsertarEnXML == null || $mensajeInsertrJSon == "" || $mensajeInsertrJSon == null){
+      ?>
+      <script type="text/javascript">
+        alert("Pregunta añadida con exito");
+      </script>
+      <?php
+    //}
+    
+
     ?>
   </section>
   <?php include '../html/Footer.html' ?>
@@ -137,6 +146,10 @@
       $compl = $_POST['dif'];
       $tema = $_POST['tema'];
       $urlBack = "?correo=".$correo;
+
+      if($correo=="" || $enun=="" || $correct=="" || $inc1=="" || $inc2=="" || $inc3=="" || $tema==""){
+        return "<p id='msgXML' style='color:red;'> No puedes haber ningun campo vacio </p> ";;
+      }
 
 
       $json = file_get_contents('../json/Questions.json');

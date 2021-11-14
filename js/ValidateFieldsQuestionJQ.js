@@ -53,6 +53,6 @@ $(document).ready(function() {
             alert( 'Debes especificar un tema.' );
             return false;
         }
-    
+        alert('Pregunta introducida correctamente');
     });
 });
