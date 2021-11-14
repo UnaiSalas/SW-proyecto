@@ -31,16 +31,21 @@
       </style>
       
         <h1>Cliente REST para borrar un email de la lista de usuarios VIP</h1><br>
-        <input type="text" id="id" name="id">
-        <input type="button" id="eliminarVip" name="eliminarVip" value="Eliminar VIP"></button>
+        <form id="fdeleteVip" name="fdeleteVip" method="POST">
+            <input type="text" id="id" name="id">
+            <input type="submit" id="eliminarVip" name="eliminarVip" value="Eliminar VIP">
+        </form>
         <?php
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "");
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
-            $output = curl_exec($ch);
-            echo $output;
-            curl_close($ch);
+            if (isset($_POST['eliminarVip'])){
+                $ch = curl_init();
+                $url = "https://sw.ikasten.io/~G24/LabWebServices/php/VipUsers.php?id=" . $_POST['id'];
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+                $output = curl_exec($ch);
+                echo $output;
+                curl_close($ch);
+            }
         ?>
 
 
