@@ -46,11 +46,11 @@ $resource = $_SERVER['REQUEST_URI'];
 
         case 'POST':
             // Para añadir VIPS
-            $arguments = $_POST;
             $result = 0;
-            $id = $arguments['id'];
+            $id = $_POST['id'];
             $sql = "INSERT INTO vips (email) VALUES ('$id');";
             $num=Database::EjecutarNoConsulta($cnx, $sql);
+            echo $num;
             if ($num==0){
                 echo "Ya está en la BD";
             } else {
