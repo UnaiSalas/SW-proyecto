@@ -35,7 +35,7 @@
         <input type="submit" id="esVIP" name="esVIP" value="Es VIP?">
         <?php
             $culr = curl_init();
-            $url = "./VipUsers/" . $_POST['correo'];
+            $url = "https://sw.ikasten.io/~G24/LabWebServices/php/VipUsers" . $_POST['correo'];
             curl_setopt($culr, CURLOPT_URL, $url);
             curl_setopt($culr, CURLOPT_RETURNTRANSFER, 1);
             $str = curl_exec($culr);
