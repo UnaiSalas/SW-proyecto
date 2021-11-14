@@ -47,7 +47,7 @@ $resource = $_SERVER['REQUEST_URI'];
         case 'POST':
             // Para añadir VIPS
             $result = 0;
-            $id = $_POST['id'];
+            $id = $_GET['id'];
             echo "id = " . $id;
             $sql = "INSERT INTO vips (email) VALUES ('$id')";
             $num=Database::EjecutarNoConsulta($cnx, $sql);
