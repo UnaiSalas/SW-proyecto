@@ -42,7 +42,7 @@
             curl_setopt($ch, CURLOPT_URL, $url);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
             curl_setopt($ch, CURLOPT_POST, true);
-            $data = array('id' => $id);
+            $data = array('id' => $_POST['id']);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
             $output = curl_exec($ch);
             echo $output;
