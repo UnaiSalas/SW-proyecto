@@ -33,7 +33,7 @@
         <h1>Cliente REST para saber si el usuario es VIP</h1><br>
         <form id="fisVip" name="fisVip" method="POST" action="IsVip.php?id=<?php echo $_GET["id"]; ?>">
           <input type="text" id="id" name="id">
-          <input type="button" id="esVIP" name="esVIP" value="Es VIP?"></button>
+          <input type="submit" id="esVIP" name="esVIP" value="Es VIP?">
         </form>
         <?php
           $culr = curl_init();
