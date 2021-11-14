@@ -43,9 +43,6 @@
             curl_setopt($culr, CURLOPT_RETURNTRANSFER, 1);
             $str = curl_exec($culr);
             echo $str;
-            echo '<script type="text/javascript">
-                    window.location.href="IsVip.php?id='.$_POST['id'].'";
-                  </script>';
           }
         ?>
 
