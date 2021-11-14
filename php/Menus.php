@@ -21,7 +21,7 @@
       <span><a href="ShowQuestionsWithImage.php?correo=<?php echo $_GET["correo"]; ?>"> Ver Preguntas </a></span>
       <span><a href="ShowXMLQuestionsWithImage.php?correo=<?php echo $_GET["correo"]; ?>"> Ver Preguntas XML</a></span>
       <span><a href="ShowJsonQuestionsWithImage.php?correo=<?php echo $_GET["correo"]; ?>"> Ver Preguntas JSON</a></span>
-      <span><a href="VipUsers.php?correo=<?php echo $_GET["correo"]; ?>"> Comprobar VIP</a></span>
+      <span><a href="IsVip.php?correo=<?php echo $_GET["correo"]; ?>"> Comprobar VIP</a></span>
       <span><a href="ShowVips.php?correo=<?php echo $_GET["correo"]; ?>"> Listado de VIP</a></span>
       <span><a href="AddVip.php?correo=<?php echo $_GET["correo"]; ?>"> Añadir VIP</a></span>
       <span><a href="DeleteVip.php?correo=<?php echo $_GET["correo"]; ?>"> Borrar VIP</a></span>
