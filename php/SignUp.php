@@ -5,6 +5,7 @@
 </head>
 <body>
   <?php include '../php/Menus.php' ?>
+  <?php include '../php/ClientVerifyEnrollment.php' ?>
   <section class="main" id="s1">
     <div>
         <style>
@@ -135,28 +136,30 @@
                 echo "<br>";
             }
             else{
-              //Si no ha habido ningún error, se registra al usuario
-              //Conectamos con la base de datos mysql
-              include 'DbConfig.php';
-              $conn = mysqli_connect($server, $user, $pass, $basededatos);
-              $conn->set_charset("utf8");
+              if(comprobar() == "SI"){
+                //Si no ha habido ningún error, se registra al usuario
+                //Conectamos con la base de datos mysql
+                include 'DbConfig.php';
+                $conn = mysqli_connect($server, $user, $pass, $basededatos);
+                $conn->set_charset("utf8");
 
-              if(!$conn){
-                die("Connection failed: " . mysqli_connect_error());
-              }
-              $sql = "INSERT INTO users (tipouser, correo, nom, apell, pass, img) VALUES ('$tipoUser', '$correo', '$nom', '$apell', '$userpass', '$imagen_dir')";
-              $anadir = mysqli_query($conn, $sql);
-              if(!$anadir){
-                echo "<h3>Se ha producido un error al intentar registrar al usuario. :(</h3>";
-                echo "<br>";
-              }
-              else{
-                //Si se puede introducir el usuario, entonces guardamos la imagen en el directorio images.
-                move_uploaded_file($imagen_loc_tmp, $imagen_dir);     
-                mysqli_close($conn);  
-                echo '<script type="text/javascript"> alert("Se ha realizado el registro de forma correcta");
-                        window.location.href="LogIn.php";
-                        </script>';        
+                if(!$conn){
+                  die("Connection failed: " . mysqli_connect_error());
+                }
+                $sql = "INSERT INTO users (tipouser, correo, nom, apell, pass, img) VALUES ('$tipoUser', '$correo', '$nom', '$apell', '$userpass', '$imagen_dir')";
+                $anadir = mysqli_query($conn, $sql);
+                if(!$anadir){
+                  echo "<h3>Se ha producido un error al intentar registrar al usuario. :(</h3>";
+                  echo "<br>";
+                }
+                else{
+                  //Si se puede introducir el usuario, entonces guardamos la imagen en el directorio images.
+                  move_uploaded_file($imagen_loc_tmp, $imagen_dir);     
+                  mysqli_close($conn);  
+                  echo '<script type="text/javascript"> alert("Se ha realizado el registro de forma correcta");
+                          window.location.href="LogIn.php";
+                          </script>';        
+                }
               }
             }
         }
