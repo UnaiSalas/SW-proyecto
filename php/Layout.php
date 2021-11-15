@@ -12,7 +12,7 @@
     <div>
 
       <h2>Quiz: el juego de las preguntas</h2>
-      
+      <?php echo $_SESSION['login']; ?>
     </div>
   </section>
   <?php include '../html/Footer.html' ?>
