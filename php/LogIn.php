@@ -85,7 +85,7 @@
                   //window.location.href="Layout.php?correo='.$correo.'";
                   session_start();
                   $_SESSION['correo']=$correo;
-                  header("Location:Layout.php");
+                  header("Location:HandlingQuizesAjax.php");
                 }
                 else{
                   echo "<h3>Datos de login incorrectos. :(</h3>";
