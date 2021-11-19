@@ -1,6 +1,3 @@
-<?php
-  include('Seguridad.php');
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +9,7 @@
     <div>
 
       <h2>Quiz: el juego de las preguntas</h2>
-      
+
     </div>
   </section>
   <?php include '../html/Footer.html' ?>

@@ -82,10 +82,10 @@
                 //printf ("%s (%s)\n", $row["correo"], $row["pass"]);
                 if(($row['correo'] == $correo) && ($row['pass'] == $userpass)){
                   echo '<script type="text/javascript"> alert("Bienvenido al Sistema: '. $correo .' "); </script>';
-                        //window.location.href="Layout.php?correo='.$correo.'";
-                        session_start();
-                        $_SESSION['login']=$correo;
-                        header("Location:Layout.php");
+                  //window.location.href="Layout.php?correo='.$correo.'";
+                  session_start();
+                  $_SESSION['correo']=$correo;
+                  header("Location:Layout.php");
                 }
                 else{
                   echo "<h3>Datos de login incorrectos. :(</h3>";

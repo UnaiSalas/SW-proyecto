@@ -1,3 +1,7 @@
+<?php
+  session_start();
+  alert("Nombre de la sesion" . $_SESSION['correo']);
+?>
 <!DOCTYPE html>
 <html>
 <head>
