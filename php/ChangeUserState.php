@@ -7,10 +7,10 @@
         $correo = $_POST['correo'];
         $estado = $_POST['estado'];
 
-        if ($estado == 'Activo'){
-            $CambioEstado = "Bloqueado";
+        if ($estado == 'activo'){
+            $CambioEstado = "bloqueado";
         }else{
-            $CambioEstado = "Activo";
+            $CambioEstado = "activo";
         }
 
 
