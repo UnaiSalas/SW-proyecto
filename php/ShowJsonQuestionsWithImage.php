@@ -1,17 +1,10 @@
 <?php
   session_start();
   if(!isset($_SESSION['tipo']) || ($_SESSION['tipo']!='prof' && $_SESSION['tipo']!='alu')){
-    if(!isset($_SESSION['estado']) || ($_SESSION['estado']=='bloqueado')){
-      echo '<script>
-            alert("Este usuario está bloqueado");
-            window.location.href="Layout.php";
-          </script>';
-    } else {
       echo '<script>
               alert("No tienes acceso a esta página");
               window.location.href="Layout.php";
             </script>';
-    }
   }
 ?>
 <!DOCTYPE html>

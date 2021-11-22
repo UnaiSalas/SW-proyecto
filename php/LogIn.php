@@ -75,20 +75,26 @@
                 //Logear al usuario
                 //printf ("%s (%s)\n", $row["correo"], $row["pass"]);
                 if(($row['correo'] == $correo) && ($row['pass'] == $userpass)){
-                  
-                  $_SESSION['correo']=$row['correo'];
-                  $_SESSION['nombre']=$row['nom'];
-                  $_SESSION['apellido']=$row['apell'];
-                  $_SESSION['imagen']=$row['img'];
-                  $_SESSION['estado']=$row['estado'];
-                  if($correo == 'admin@ehu.es'){
-                    $_SESSION['tipo']='admin';
-                  }else{
-                    $_SESSION['tipo']=$row['tipouser'];
+                  if($row['estado']=='activo'){
+                    $_SESSION['correo']=$row['correo'];
+                    $_SESSION['nombre']=$row['nom'];
+                    $_SESSION['apellido']=$row['apell'];
+                    $_SESSION['imagen']=$row['img'];
+                    $_SESSION['estado']=$row['estado'];
+                    if($correo == 'admin@ehu.es'){
+                      $_SESSION['tipo']='admin';
+                    }else{
+                      $_SESSION['tipo']=$row['tipouser'];
+                    }
+                    echo '<script type="text/javascript"> alert("Bienvenido al Sistema: '. $_SESSION['correo'] .' ");
+                          window.location.href="Layout.php";
+                          </script>';
+                  } else {
+                    echo '<script>
+                      alert("Este usuario está bloqueado");
+                      window.location.href="Layout.php";
+                    </script>';
                   }
-                  echo '<script type="text/javascript"> alert("Bienvenido al Sistema: '. $_SESSION['correo'] .' ");
-                        window.location.href="Layout.php";
-                        </script>';
                 }
                 else{
                   echo "<h3>Datos de login incorrectos. :(</h3>";
