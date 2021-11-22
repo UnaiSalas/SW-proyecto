@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    //session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -75,6 +75,7 @@
                 //Logear al usuario
                 //printf ("%s (%s)\n", $row["correo"], $row["pass"]);
                 if(($row['correo'] == $correo) && ($row['pass'] == $userpass)){
+                  session_start();
                   
                   $_SESSION['correo']=$row['correo'];
                   $_SESSION['nombre']=$row['nom'];
