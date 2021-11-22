@@ -75,7 +75,7 @@
                 //Logear al usuario
                 //printf ("%s (%s)\n", $row["correo"], $row["pass"]);
                 if(($row['correo'] == $correo) && ($row['pass'] == $userpass)){
-                  if($row['estado']=='activo'){
+                  if($row['estado']=='Activo'){
                     $_SESSION['correo']=$row['correo'];
                     $_SESSION['nombre']=$row['nom'];
                     $_SESSION['apellido']=$row['apell'];
