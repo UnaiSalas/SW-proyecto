@@ -79,6 +79,7 @@
                   $_SESSION['correo']=$row['correo'];
                   $_SESSION['nombre']=$row['nom'];
                   $_SESSION['apellido']=$row['apell'];
+                  $_SESSION['imagen']=$row['img'];
                   if($correo == 'admin@ehu.es'){
                     $_SESSION['tipo']='admin';
                   }else{

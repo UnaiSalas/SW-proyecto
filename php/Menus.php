@@ -1,12 +1,13 @@
 <div id='page-wrap'>
 <header class='main' id='h1'>
-<?php if(!isset($_SESSION['correo'])){ ?>
+<?php if(!isset($_SESSION['correo'])){ 
+  ?>
 
   
   <span class="right"><a href="SignUp.php">Registro</a></span>
   <span class="right"><a href="LogIn.php">Login</a></span>
   <?php }else{ ?>
-  <span class="right"><a href="LogOut.php">Logout</a><?php echo ' '.$_SESSION['correo']?></span>
+  <span class="right"><a href="LogOut.php">Logout</a><?php echo '<img src="'.$_SESSION['imagen']. ' " width="50" height="50">'; ?></span>
   <?php } ?>
 
 </header>
@@ -37,9 +38,10 @@
       <span><a href="ShowJsonQuestionsWithImage.php"> Ver Preguntas JSON</a></span>
     <?php } 
     
-    if($tipo == "admin"){
-      echo ("Admin");
-    }?>
+    if($tipo == "admin"){?>
+      <span><a href="HandlingAccounts.php"> Gestionar usuarios</a></span>
+    <?php }
+    ?>
     
 
 
@@ -49,5 +51,3 @@
   <?php }?>
    
 </nav>
-
-<!-- <script type="text/javascript" src="../js/todos.js"></script> -->
