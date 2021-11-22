@@ -146,7 +146,7 @@
                 if(!$conn){
                   die("Connection failed: " . mysqli_connect_error());
                 }
-                $sql = "INSERT INTO users (tipouser, correo, nom, apell, pass, img) VALUES ('$tipoUser', '$correo', '$nom', '$apell', '$userpass', '$imagen_dir')";
+                $sql = "INSERT INTO users (tipouser, correo, nom, apell, pass, estado, img) VALUES ('$tipoUser', '$correo', '$nom', '$apell', '$userpass', 'Activo', '$imagen_dir')";
                 $anadir = mysqli_query($conn, $sql);
                 if(!$anadir){
                   echo "<h3>Se ha producido un error al intentar registrar al usuario. :(</h3>";

@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,8 +39,6 @@
         <?php
         //Validación del registro en el servidor
         if (isset($_POST['botonLogin'])){
-            $correo = "";
-            $userpass = "";
 
             $correo = $_POST['correo']; 
             $userpass = $_POST['userpass'];
@@ -66,32 +67,59 @@
               $logear = mysqli_query($conn, $sql) or die(mysqli_error($conn));
               $row = mysqli_fetch_array($logear, MYSQLI_ASSOC) ; //Lo convertimos a array
 
-              if(is_null($row)){
+              if(!$row){
                 echo "<h3>Datos de login incorrectos. :(</h3>";
                 echo "<br>";
               }
               else{
-
-
-
-
-                // LAB 7 DE SEGURIDAD BASADA EN SESIONES
+                //Logear al usuario
+                //printf ("%s (%s)\n", $row["correo"], $row["pass"]);
+                if(($row['correo'] == $correo) && ($row['pass'] == $userpass)){
+                  
+                  $_SESSION['correo']=$row['correo'];
+                  $_SESSION['nombre']=$row['nom'];
+                  $_SESSION['apellido']=$row['apell'];
+                  if($correo == 'admin@ehu.es'){
+                    $_SESSION['tipo']='admin';
+                  }else{
+                    $_SESSION['tipo']=$row['tipouser'];
+                  }
+                  echo '<script type="text/javascript"> alert("Bienvenido al Sistema: '.  $_SESSION['correo'] .' ");
+                        window.location.href="Layout.php";
+                        </script>';
+                }
+                else{
+                  echo "<h3>Datos de login incorrectos. :(</h3>";
+                  echo "<br>";
+                }
+              } /*// LAB 7 DE SEGURIDAD BASADA EN SESIONES
                 // https://obedalvarado.pw/blog/formulario-inicio-sesion-php-mysql/
 
                 //Logear al usuario
                 //printf ("%s (%s)\n", $row["correo"], $row["pass"]);
+                echo("<script> alert('Bienvenido:'); </script> ");
                 if(($row['correo'] == $correo) && ($row['pass'] == $userpass)){
-                  echo '<script type="text/javascript"> alert("Bienvenido al Sistema: '. $correo .' "); </script>';
+                      echo("<script> alert('Bienvenido:".$row['nom']."'); </script> ");
                   //window.location.href="Layout.php?correo='.$correo.'";
                   session_start();
-                  $_SESSION['correo']=$correo;
-                  header("Location:HandlingQuizesAjax.php");
+                  $_SESSION['correo']=$row['correo'];
+                  $_SESSION['nombre']=$row['nom'];
+                  $_SESSION['apellido']=$row['apell'];
+                  //$_SESSION['imagen']=$row['imagen_dir'];
+                  if($correo == 'admin@ehu.es'){
+                    $_SESSION['tipo']='admin';
+                  }else{
+                    $_SESSION['tipo']=$row['tipoUser'];
+                  }
+                  header("Location:Layout.php");
                 }
                 else{
                   echo "<h3>Datos de login incorrectos. :(</h3>";
                   echo "<br>";
                 }
               } 
+              $conn->close();*/
+              $conn->close();
           }
         }
         ?>

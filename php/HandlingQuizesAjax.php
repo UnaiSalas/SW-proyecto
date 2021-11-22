@@ -1,6 +1,10 @@
 <?php
   session_start();
-  alert("Nombre de la sesion" . $_SESSION['correo']);
+  if(!isset($_SESSION['tipo']) || ($_SESSION['tipo']!='prof' && $_SESSION['tipo']!='alu')){
+    echo "<script>
+            window.location.href='Layout.php';
+          </script>";
+  }
 ?>
 <!DOCTYPE html>
 <html>

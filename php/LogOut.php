@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +14,10 @@
         alert("¡Hasta pronto!");
         window.location.href="Layout.php";
     </script>;
+     <?php 
+      session_unset();
+      session_destroy();?>
+      
     </div>
     </section>
     <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
