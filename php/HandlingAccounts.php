@@ -47,7 +47,7 @@
                         <input type="submit" value ="Cambiar Estado" onClick="return confirm('.$confirmEstado.')">
                     </form></td>
                     <td><form method="POST" action="RemoveUser.php">
-                        <input type="hidden" name="email" value="'.$row['correo'].'">
+                        <input type="hidden" name="correo" value="'.$row['correo'].'">
                         <input type="submit" value ="Borrar" onClick="return confirm('.$confirmBorrar.')">
                     </form></td>
                     <td>' .$row['estado'].'</td>
