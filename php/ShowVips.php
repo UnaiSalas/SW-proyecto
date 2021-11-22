@@ -1,6 +1,11 @@
-
 <?php
-    session_start();
+  session_start();
+  if(!isset($_SESSION['tipo']) || ($_SESSION['tipo']!='prof')){
+    echo '<script>
+            alert("No tienes acceso a esta página");
+            window.location.href="Layout.php";
+          </script>';
+  }
 ?>
 <!DOCTYPE html>
 <html>
