@@ -39,6 +39,8 @@
     <?php } 
     
     if($tipo == "admin"){?>
+      <span><a href="Layout.php"> Inicio</a></span>
+      <span><a href="Credits.php">Creditos</a></span>
       <span><a href="HandlingAccounts.php"> Gestionar usuarios</a></span>
     <?php }
     ?>

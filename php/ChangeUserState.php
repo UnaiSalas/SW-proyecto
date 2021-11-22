@@ -40,9 +40,10 @@
 
     }else{
 
-        echo "<script>
-              window.location.href='Layout.php';
-            </script>";
+        echo '<script>
+              alert("No tienes acceso a esta página");
+              window.location.href="Layout.php";
+            </script>';
     }
 
 
