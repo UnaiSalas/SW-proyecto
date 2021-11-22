@@ -86,7 +86,7 @@
                   }else{
                     $_SESSION['tipo']=$row['tipouser'];
                   }
-                  echo '<script type="text/javascript"> alert("Bienvenido al Sistema: '.  $_SESSION['correo'] .' ");
+                  echo '<script type="text/javascript"> alert("Bienvenido al Sistema: '. $_SESSION['correo'] .' ");
                         window.location.href="Layout.php";
                         </script>';
                 }
