@@ -4,6 +4,8 @@
     echo "<script>
             window.location.href='Layout.php';
           </script>";
+  } else{
+    echo 'alert("No tienes acceso a esta página")';
   }
 ?>
 <!DOCTYPE html>
