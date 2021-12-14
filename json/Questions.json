@@ -33,6 +33,40 @@
                     "HTML"
                 ]
             }
+        },
+        {
+            "subject": "hjhj",
+            "author": "mmorillo005@ikasle.ehu.eus",
+            "itemBody": {
+                "p": "La pregunta es esta"
+            },
+            "correctResponse": {
+                "value": "jujujujuju"
+            },
+            "incorrectResponses": {
+                "value": [
+                    "jajajaj",
+                    "jajajaja",
+                    "jejeje"
+                ]
+            }
+        },
+        {
+            "subject": "erer",
+            "author": "mmorillo005@ikasle.ehu.eus",
+            "itemBody": {
+                "p": "La pregunta es esta"
+            },
+            "correctResponse": {
+                "value": "yuyu"
+            },
+            "incorrectResponses": {
+                "value": [
+                    "xcdtrf",
+                    "i",
+                    "q"
+                ]
+            }
         }
     ]
 }

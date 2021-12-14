@@ -146,20 +146,16 @@
                 if(!$conn){
                   die("Connection failed: " . mysqli_connect_error());
                 }
-                $sql = "INSERT INTO users (tipouser, correo, nom, apell, pass, estado, img) VALUES ('$tipoUser', '$correo', '$nom', '$apell', '$userpass', 'Activo', '$imagen_dir')";
-                $anadir = mysqli_query($conn, $sql);
-                if(!$anadir){
-                  echo "<h3>Se ha producido un error al intentar registrar al usuario. :(</h3>";
-                  echo "<br>";
-                }
-                else{
-                  //Si se puede introducir el usuario, entonces guardamos la imagen en el directorio images.
-                  move_uploaded_file($imagen_loc_tmp, $imagen_dir);     
-                  mysqli_close($conn);  
-                  echo '<script type="text/javascript"> alert("Se ha realizado el registro de forma correcta");
-                          window.location.href="LogIn.php";
-                          </script>';        
-                }
+                $userpass = password_hash($userpass, PASSWORD_DEFAULT);
+
+                $sql = "INSERT INTO users (tipouser, correo, nom, apell, pass, estado, img) VALUES (?,?,?,?,?,'Activo',?)";
+                $query = $conn->prepare($sql);
+                $query->bind_param('ssssss', $tipoUser, $correo, $nom, $apell, $userpass, $imagen_dir);
+                $query->execute();
+                move_uploaded_file($imagen_loc_tmp, $imagen_dir); 
+                echo '<script type="text/javascript"> alert("Se ha realizado el registro de forma correcta");
+                         window.location.href="LogIn.php";
+                      </script>';
               }
             }
         }
@@ -191,7 +187,7 @@
           if (isset($_POST['botonReg'])){
             echo '<h3> El correo ' . $correo . $soapclient->comprobar($correo) . ' existe </h3>';
           }
-          */
+          
         ?>
         <script>
           function blurFunction(){
@@ -214,4 +210,4 @@
     <script type="text/javascript" src="../js/RemoveImageInForm.js"></script>
     <?php include '../html/Footer.html' ?>
 </body>
-</html>  
+</html>  */

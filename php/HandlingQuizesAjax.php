@@ -25,7 +25,7 @@
         </style>
         
         <form id="fquestion" name="fquestion" action="AddQuestionWithImage.php?correo=<?php echo $_GET["correo"]; ?>" enctype="multipart/form-data"  method = "POST" onsubmit = "return validacion()" actionstyle="width: 60%; margin: 0px auto;">
-        
+        <p style="background-color:#62a2ff;" id="contadorQuestions"></p><br>
         <table style="border:4px solid #c1e9f6;" bgcolor="#9cc4e8">
             <caption style="text-align:left">
               <h2>Pregunta para el quiz</h2> 
@@ -35,7 +35,9 @@
               <?php if (isset($_GET['correo'])){                                           
                 echo '<td align="left"><input type="text" id="correo" name="correo" autofocus value ="'.$_GET["correo"].'"></td>';
                }else{ ?>  
-                <td align="left"><input type="text" id="correo" name="correo" autofocus></td>
+               <?php
+                echo '<td align="left"><input type="text" id="correo" name="correo" value="' . $_SESSION['correo'] . '" readonly onmousedown="return false;"></td>';
+                ?>
               <?php }?>
             </tr>
             <tr>
@@ -105,6 +107,7 @@
   <script type="text/javascript" src="../js/RemoveImageInForm.js"></script>
   <script type="text/javascript" src="../js/ValidateFieldsQuestionJQ.js"></script>
 
+  <script type="text/javascript" src="../js/CountQuestions.js"></script>
   <!-- scripts del lab 6 -->
   <script type="text/javascript" src="../js/AddQuestionsAjax.js"></script>
   <script type="text/javascript" src="../js/ShowQuestionsAjax.js"></script>
