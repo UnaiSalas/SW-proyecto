@@ -146,7 +146,7 @@
                 if(!$conn){
                   die("Connection failed: " . mysqli_connect_error());
                 }
-                $userpass = password_hash($userpass, PASSWORD_DEFAULT);
+                $userpass = crypt($userpass, "salas");
 
                 $sql = "INSERT INTO users (tipouser, correo, nom, apell, pass, estado, img) VALUES (?,?,?,?,?,'Activo',?)";
                 $query = $conn->prepare($sql);

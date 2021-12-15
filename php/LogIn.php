@@ -73,32 +73,34 @@
               echo $userpass;
               echo "<br>";
               echo $row['pass'];
-              if(!password_verify($userpass, $row['pass'])){
-                if($row['estado']=='Activo'){
-                  $_SESSION['correo']=$row['correo'];
-                  $_SESSION['nombre']=$row['nom'];
-                  $_SESSION['apellido']=$row['apell'];
-                  $_SESSION['imagen']=$row['img'];
-                  $_SESSION['estado']=$row['estado'];
-                  if($correo == 'admin@ehu.es'){
-                    $_SESSION['tipo']='admin';
-                  }else{
-                    $_SESSION['tipo']=$row['tipouser'];
+              if($row){
+                if(crypt($userpass, "salas") == $row['pass'])){
+                  if($row['estado']=='Activo'){
+                    $_SESSION['correo']=$row['correo'];
+                    $_SESSION['nombre']=$row['nom'];
+                    $_SESSION['apellido']=$row['apell'];
+                    $_SESSION['imagen']=$row['img'];
+                    $_SESSION['estado']=$row['estado'];
+                    if($correo == 'admin@ehu.es'){
+                      $_SESSION['tipo']='admin';
+                    }else{
+                      $_SESSION['tipo']=$row['tipouser'];
+                    }
+                    echo '<script type="text/javascript"> alert("Bienvenido al Sistema: '. $_SESSION['correo'] .' ");
+                          window.location.href="Layout.php";
+                          </script>';
+                  } else {
+                    echo '<script>
+                      alert("Este usuario está bloqueado");
+                      window.location.href="Layout.php";
+                    </script>';
                   }
-                  echo '<script type="text/javascript"> alert("Bienvenido al Sistema: '. $_SESSION['correo'] .' ");
-                        window.location.href="Layout.php";
-                        </script>';
-                } else {
-                  echo '<script>
-                    alert("Este usuario está bloqueado");
-                    window.location.href="Layout.php";
-                  </script>';
+                }else{
+                  echo "<h3>Datos de login incorrectos. :(</h3>";
+                  echo "<br>";
                 }
-              }else{
-                echo "<h3>Datos de login incorrectos. :(</h3>";
-                echo "<br>";
+                $conn->close();
               }
-
 
               //$logear = mysqli_query($conn, $sql) or die(mysqli_error($conn));
               //$row = mysqli_fetch_array($logear, MYSQLI_ASSOC) ; //Lo convertimos a array
@@ -135,7 +137,7 @@
                 }
               } 
               $conn->close();*/
-              $conn->close();
+              
           }
         
         ?>
