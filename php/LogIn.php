@@ -74,7 +74,7 @@
               echo "<br>";
               echo $row['pass'];
               if($row){
-                if(crypt($userpass, "salas") == $row['pass'])){
+                if(crypt($userpass, "salas") == $row['pass']){
                   if($row['estado']=='Activo'){
                     $_SESSION['correo']=$row['correo'];
                     $_SESSION['nombre']=$row['nom'];
