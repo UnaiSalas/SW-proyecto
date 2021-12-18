@@ -57,88 +57,52 @@
               //Si no ha habido ningún error, se INTENTA logear al usuario
               //Conectamos con la base de datos mysql
               include 'DbConfig.php';
-              $conn = mysqli_connect($server, $user, $pass, $basededatos);
-              $conn->set_charset("utf8");
-
-              if(!$conn){
-                die("Connection failed: " . mysqli_connect_error());
+              try{
+                $dsn = "mysql:host=$server;dbname=$basededatos";
+                $dbh = new PDO($dsn, $user, $pass);
+              } catch (PDOException $e){
+                echo $e->getMessage();
               }
-              //$sql = "SELECT * from users where correo = '$correo' and pass = '$userpass'";
-              $query= $conn->prepare("SELECT * from users where correo =?");
-              $query->bind_param('s', $correo);
+              // FETCH_OBJ
+              $query = $dbh->prepare("SELECT * FROM users WHERE correo=?");
+              $query->bindParam(1, $correo);
+              // Especificamos el fetch mode antes de llamar a fetch()
+              $query->setFetchMode(PDO::FETCH_OBJ);
+              // Ejecutamos
               $query->execute();
-              $res = $query->get_result();
-              $row = $res->fetch_assoc();
-              $userpass = password_hash($userpass, PASSWORD_DEFAULT);
-              echo $userpass;
-              echo "<br>";
-              echo $row['pass'];
-              if($row){
-                if(crypt($userpass, "salas") == $row['pass']){
-                  if($row['estado']=='Activo'){
-                    $_SESSION['correo']=$row['correo'];
-                    $_SESSION['nombre']=$row['nom'];
-                    $_SESSION['apellido']=$row['apell'];
-                    $_SESSION['imagen']=$row['img'];
-                    $_SESSION['estado']=$row['estado'];
-                    if($correo == 'admin@ehu.es'){
-                      $_SESSION['tipo']='admin';
-                    }else{
-                      $_SESSION['tipo']=$row['tipouser'];
-                    }
-                    echo '<script type="text/javascript"> alert("Bienvenido al Sistema: '. $_SESSION['correo'] .' ");
-                          window.location.href="Layout.php";
-                          </script>';
-                  } else {
-                    echo '<script>
-                      alert("Este usuario está bloqueado");
-                      window.location.href="Layout.php";
-                    </script>';
-                  }
-                }else{
-                  echo "<h3>Datos de login incorrectos. :(</h3>";
-                  echo "<br>";
-                }
-                $conn->close();
-              }
-
-              //$logear = mysqli_query($conn, $sql) or die(mysqli_error($conn));
-              //$row = mysqli_fetch_array($logear, MYSQLI_ASSOC) ; //Lo convertimos a array
-
-              
-                //Logear al usuario
-                //printf ("%s (%s)\n", $row["correo"], $row["pass"]);
-                //if(($row['correo'] == $correo) && ($row['pass'] == $userpass)){
-                  
-              } /*// LAB 7 DE SEGURIDAD BASADA EN SESIONES
-                // https://obedalvarado.pw/blog/formulario-inicio-sesion-php-mysql/
-
-                //Logear al usuario
-                //printf ("%s (%s)\n", $row["correo"], $row["pass"]);
-                echo("<script> alert('Bienvenido:'); </script> ");
-                if(($row['correo'] == $correo) && ($row['pass'] == $userpass)){
-                      echo("<script> alert('Bienvenido:".$row['nom']."'); </script> ");
-                  //window.location.href="Layout.php?correo='.$correo.'";
-                  session_start();
-                  $_SESSION['correo']=$row['correo'];
-                  $_SESSION['nombre']=$row['nom'];
-                  $_SESSION['apellido']=$row['apell'];
-                  //$_SESSION['imagen']=$row['imagen_dir'];
+              $row = $query->fetch();
+              if(password_verify($userpass, $row->pass)){
+                if($row->estado=='Activo'){
+                  $_SESSION['correo']=$row->correo;
+                  $_SESSION['nombre']=$row->nom;
+                  $_SESSION['apellido']=$row->apell;
+                  $_SESSION['imagen']=$row->img;
+                  $_SESSION['estado']=$row->estado;
                   if($correo == 'admin@ehu.es'){
                     $_SESSION['tipo']='admin';
                   }else{
-                    $_SESSION['tipo']=$row['tipoUser'];
+                    $_SESSION['tipo']=$row->tipouser;
                   }
-                  header("Location:Layout.php");
+                  $dbh = null;
+                  echo '<script type="text/javascript"> alert("Bienvenido al Sistema: '. $_SESSION['correo'] .' ");
+                          window.location.href="Layout.php";
+                          </script>';
+                } else {
+                  $dbh = null;
+                  echo '<script>
+                      alert("Este usuario está bloqueado");
+                      window.location.href="LogIn.php";
+                    </script>';
                 }
-                else{
-                  echo "<h3>Datos de login incorrectos. :(</h3>";
-                  echo "<br>";
-                }
-              } 
-              $conn->close();*/
-              
+              } else {
+                $dbh = null;
+                echo "<h3>Datos de login incorrectos. :(</h3>";
+                echo "<br>";
+              }
+              // cerrar conexión
+              //$dbh = null;
           }
+        }
         
         ?>
     </div>

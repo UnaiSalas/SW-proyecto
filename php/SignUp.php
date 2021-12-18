@@ -140,24 +140,35 @@
                 //Si no ha habido ningún error, se registra al usuario
                 //Conectamos con la base de datos mysql
                 include 'DbConfig.php';
-                $conn = mysqli_connect($server, $user, $pass, $basededatos);
-                $conn->set_charset("utf8");
-
-                if(!$conn){
-                  die("Connection failed: " . mysqli_connect_error());
+                try{
+                  $dsn = "mysql:host=$server;dbname=$basededatos";
+                  $dbh = new PDO($dsn, $user, $pass);
+                } catch (PDOException $e){
+                  echo $e->getMessage();
                 }
-                $userpass = crypt($userpass, "salas");
-
-                $sql = "INSERT INTO users (tipouser, correo, nom, apell, pass, estado, img) VALUES (?,?,?,?,?,'Activo',?)";
-                $query = $conn->prepare($sql);
-                $query->bind_param('ssssss', $tipoUser, $correo, $nom, $apell, $userpass, $imagen_dir);
+                // prepare
+                $query = $dbh->prepare("INSERT INTO users (tipouser, correo, nom, apell, pass, estado, img) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                // bind
+                $query->bindParam(1, $tipoUser);
+                $query->bindParam(2, $correo);
+                $query->bindParam(3, $nom);
+                $query->bindParam(4, $apell);
+                $hash = password_hash($userpass, PASSWORD_DEFAULT);
+                $query->bindParam(5, $hash);
+                $activo = "Activo";
+                $query->bindParam(6, $activo);
+                $query->bindParam(7, $imagen_dir);
+                // Execute
                 $query->execute();
-                move_uploaded_file($imagen_loc_tmp, $imagen_dir); 
+                move_uploaded_file($imagen_loc_tmp, $imagen_dir);     
+                // cerrar conexión
+                $dbh = null; 
                 echo '<script type="text/javascript"> alert("Se ha realizado el registro de forma correcta");
                          window.location.href="LogIn.php";
                       </script>';
-              }
+                
             }
+          }
         }
         ?>
         <script>
