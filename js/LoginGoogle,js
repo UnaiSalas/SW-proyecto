@@ -32,7 +32,6 @@ function onSignIn(googleUser){
         cache: true,
         type: 'POST',
         success: function(){
-          signOut();
           window.location.href="Layout.php";
         }
     
