@@ -12,13 +12,18 @@
   <script src="https://apis.google.com/js/platform.js" async defer></script>
   <section class="main" id="s1">
     <div>
-    <script type="text/javascript">
+    
+     <?php 
+      unset($_SESSION['correo']);
+      unset($_SESSION['imagen']);
+      unset($_SESSION['nombre']); 
+      unset($_SESSION['tipo']);
+      session_unset();
+      session_destroy();?>
+      <script type="text/javascript">
         alert("¡Hasta pronto!");
         window.location.href="Layout.php";
     </script>;
-     <?php 
-      session_unset();
-      session_destroy();?>
       
     </div>
     </section>
