@@ -188,7 +188,7 @@
 
         <!-- Lab 7 -->
         <?php
-        /*
+        
           $correo = $_POST['correo'];
           //instanciamos el objeto SoapClient con el WSDL del servicio
           $soapclient = new SoapClient('http://ehusw.es/jav/ServiciosWeb/comprobarmatricula.php?wsdl');
@@ -221,4 +221,4 @@
     <script type="text/javascript" src="../js/RemoveImageInForm.js"></script>
     <?php include '../html/Footer.html' ?>
 </body>
-</html>  */
+</html>  
