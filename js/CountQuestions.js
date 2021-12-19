@@ -1,11 +1,7 @@
 $(document).ready(function(){
     countQuestions();
     setInterval(countQuestions,5000);
-
-
 });
-
-
 function countQuestions(){
     $.ajax({
 
@@ -18,12 +14,8 @@ function countQuestions(){
         success: function(data){
             printNumberQuestions(data);
         }
-
-
     });
 }
-
-
 function printNumberQuestions(data){
     var correo = $("#correo").val();
     var nQuestions = 0;
