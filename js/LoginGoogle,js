@@ -1,0 +1,41 @@
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    console.log(auth2);
+    auth2.signOut().then(function () {
+    });
+    auth2.disconnect();
+}
+
+
+function onSignIn(googleUser){
+    var fd = new FormData();
+    var profile = googleUser.getBasicProfile();
+    
+    var nombre = profile.getName();
+    var image = profile.getImageUrl();
+    var correo = profile.getEmail();
+
+    fd.append('nombre', nombre);
+    fd.append('imagen', image);
+    fd.append('correo', correo);
+
+    console.log(nombre);
+    console.log(correo);
+    
+  
+    $.ajax({
+
+        url: '../php/LoginGoogle.php',
+        data: fd,
+        processData: false,
+        contentType: false,
+        cache: true,
+        type: 'POST',
+        success: function(){
+          signOut();
+          window.location.href="Layout.php";
+        }
+    
+    });
+
+}
