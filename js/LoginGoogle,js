@@ -12,11 +12,11 @@ function onSignIn(googleUser){
     var profile = googleUser.getBasicProfile();
     
     var nombre = profile.getName();
-    var image = profile.getImageUrl();
+    var imagen = profile.getImageUrl();
     var correo = profile.getEmail();
 
     fd.append('nombre', nombre);
-    fd.append('imagen', image);
+    fd.append('imagen', imagen);
     fd.append('correo', correo);
 
     console.log(nombre);
@@ -32,7 +32,7 @@ function onSignIn(googleUser){
         cache: true,
         type: 'POST',
         success: function(){
-          signOut();
+          //signOut();
           window.location.href="Layout.php";
         }
     

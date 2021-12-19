@@ -1,5 +1,6 @@
 <div id='page-wrap'>
 <header class='main' id='h1'>
+<script src="../js/LoginGoogle.js"></script>
 <?php if(!isset($_SESSION['correo'])){ 
   ?>
 
@@ -8,7 +9,7 @@
   <span class="right"><a href="LogIn.php">Login</a></span>
   <span class="right"><a href="LogInSocial.php">Login Social</a></span>
   <?php }else{ ?>
-  <span class="right"><a href="LogOut.php">Logout</a><?php echo $_SESSION['correo']; echo '<img src="'.$_SESSION['imagen']. ' " width="50" height="50">'; ?></span>
+  <span class="right"><a href="LogOut.php" onclick="signOut()">Logout</a><?php echo $_SESSION['correo']; echo '<img src="'.$_SESSION['imagen']. ' " width="50" height="50">'; ?></span>
   <?php } ?>
 
 </header>
